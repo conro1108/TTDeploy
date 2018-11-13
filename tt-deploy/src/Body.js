@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Tweet from './Tweet';
 
 const autosplitting = <div className="b-1">
                         Auto splitting: off
@@ -14,21 +13,56 @@ const splittingoptions = <div className="b-2">
                         </button>
                     </div>;
 
-class Body extends Component {
+const Tweets = ({boxes}) => (
+<div>
+    {
+        boxes.map( box =>(
+        <div key = {box.index}>
+    <textarea type="text2" id="tweet" name="tweet">
+                    </textarea>
+                    <div className = "sub-body2">
+                        <div className="b-4">
+                            Add picture
+                        </div>
+            {charactersused} 
+                    </div>
+    </div>
+        ))
+    }
+    </div>
+)
+
+const charactersused = <div className="b-5">
+                            0/280 characters used
+                        </div>;
+
+class Body extends React.Component {
     constructor(props){
         super(props);
         this.handleaddbox = this.handleaddbox.bind(this);
         this.handleremovebox = this.handleremovebox.bind(this);
-        this.state = {boxnum: 1};
+        const boxnum = {index: 1};
+        const boxes = [];
+        boxes.push({boxnum});
+        this.state = {boxes};
+        
+        
     }
     handleaddbox(){
-        this.setState({boxnum : this.state.boxnum + 1});
+        const newBoxes = this.state.boxes;
+        newBoxes.push({index: newBoxes.length});
+        this.setState({boxes : newBoxes});
+        console.log("handleaddbox " + this.state.boxes.length);
     }
     handleremovebox(){
-        this.setState({boxnum : this.state.boxnum - 1});
+        const newBoxes = this.state.boxes;
+        newBoxes.splice((newBoxes.length-1),1);
+        this.setState({boxes : newBoxes});
+        console.log("handleremovebox " + this.state.boxes.length);
     }
     render() {
-        const boxnum = this.state.boxnum;
+        const boxes = this.state.boxes;
+        const boxnum = boxes.length;
         let button;
         if(boxnum === 1){
             button = <div className = "centeronebutton">
@@ -40,7 +74,8 @@ class Body extends Component {
             button = <div className = "centeronebutton">
              <button className = "circlebutton" onClick = {this.handleremovebox}>
                             -
-                        </button> <button className = "circlebutton" onClick = {this.handleaddbutton}>
+                        </button>
+            <button className = "circlebutton" onClick = {this.handleaddbox}>
                             +
                         </button>
             </div>
@@ -52,11 +87,10 @@ class Body extends Component {
                     {autosplitting}
                     {splittingoptions}
                 </div>
-                <form>
-                    <Tweet />
+<Tweets boxes={boxes}/>             
             {button}
                     {sendtweet}
-                </form>
+
             </div>
         </div>
         );
