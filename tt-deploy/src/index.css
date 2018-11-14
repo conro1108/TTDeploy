@@ -28,10 +28,15 @@
   font-size: 20px;
   text-align: center;
   height: 60px;
+  display: flex;
 }
 .modal-header .close {
   margin-top: -45px;
-  margin-right: -10px;
+  border-style: hidden;
+}
+
+.modal-title{
+    padding: 10px;
 }
 
 .main-body {
@@ -264,11 +269,13 @@ input[type=link] {
 }
 .close{
   color:white;
+  background: inherit;
   opacity: .8;
   font-weight: 100;
 }
 .close:hover{
   color:white;
+  opacity: 1;
 }
 a.button {
   text-decoration: none;

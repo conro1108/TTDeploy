@@ -29,27 +29,26 @@ class OurModal extends React.Component {
         <ReactModal 
            isOpen={this.state.showModal} style={customStyles}>
                     <div class="modal-header">
-                        <div class="modal-title" id="exampleModalLabel">
+                        <div className="modal-title" id="exampleModalLabel">
                             Tweet splitting allows us to formate your thread for you.
                         </div>
-                        <button  onClick={this.handleCloseModal} type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                         <button  onClick={this.handleCloseModal} type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
                         </button>
-
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                         ...
                     </div>
 
-                    <div class="modal-footer">
+                    <div className="modal-footer">
 
-                        <form>
-                            <div class="b-7" data-dismiss="modal"><input type="submit2" value="cancel"/></div>
+                        
+                            <div className="b-7" data-dismiss="modal"><input type="submit2" value="cancel"/></div>
 
-                            <div class="b-6">
+                            <div className="b-6">
                                 <input type="submit2" value="submit"/>
                             </div>
-                        </form> 
+                        
 
                     </div>
         </ReactModal>
@@ -60,7 +59,7 @@ class OurModal extends React.Component {
 
 const customStyles = {
   content : {
-    top                   : '50%',
+    top                   : '30%',
     left                  : '50%',
     right                 : 'auto',
     bottom                : 'auto',
