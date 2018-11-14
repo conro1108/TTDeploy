@@ -50,7 +50,7 @@
   flex-direction:row;
   justify-content: space-between;   
 }
-.modual-footer{
+.modal-footer{
   display: flex;
   align-items: center;
   flex-direction:row;
@@ -64,6 +64,9 @@
   width: 100%;
   justify-content: space-around;  
   max-width: 550px
+}
+.modal-content{
+    background: black;
 }
 
 .sub-header2 {

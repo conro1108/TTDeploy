@@ -27,19 +27,31 @@ class OurModal extends React.Component {
       <div>
         <button type="button" className="notbutton" onClick={this.handleOpenModal}>Splitting options</button>
         <ReactModal 
-           isOpen={this.state.showModal}
-           contentLabel="Inline Styles Modal Example"
-           style={{
-              overlay: {
-                backgroundColor: 'papayawhip'
-              },
-              content: {
-                color: 'lightsteelblue'
-              }
-            }}
-        >
-          <p>Modal text!</p>
-          <button onClick={this.handleCloseModal}>Close Modal</button>
+           isOpen={this.state.showModal} class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title" id="exampleModalLabel">
+                            Tweet splitting allows us to formate your thread for you.
+                        </div>
+                        <button  onClick={this.handleCloseModal} type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <form>
+                            <div class="b-7" data-dismiss="modal"><input type="submit2" value="cancel"/></div>
+
+                            <div class="b-6">
+                                <input type="submit2" value="submit"/>
+                            </div>
+                        </form> 
+
+                    </div>
         </ReactModal>
       </div>
     );
