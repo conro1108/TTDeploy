@@ -27,7 +27,7 @@ class OurModal extends React.Component {
       <div>
         <button type="button" className="notbutton" onClick={this.handleOpenModal}>Splitting options</button>
         <ReactModal 
-           isOpen={this.state.showModal} class="modal-content">
+           isOpen={this.state.showModal} style={customStyles}>
                     <div class="modal-header">
                         <div class="modal-title" id="exampleModalLabel">
                             Tweet splitting allows us to formate your thread for you.
@@ -57,6 +57,18 @@ class OurModal extends React.Component {
     );
   }
 }
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)',
+    padding               : '0px'
+  }
+};
 
 
 
