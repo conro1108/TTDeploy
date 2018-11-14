@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import OurModal from './OurModal';
 
 const autosplitting = <div className="b-1">
                         Auto splitting: off
@@ -8,9 +9,7 @@ const sendtweet = <div className="b-3">
                         <input type="submit2" value="submit"/></div>;
 
 const splittingoptions = <div className="b-2">
-                        <button type="button" className="notbutton" data-toggle="modal" data-target="#exampleModal">
-                            Splitting options
-                        </button>
+                        <OurModal />
                     </div>;
 
 const Tweets = ({boxes}) => (
