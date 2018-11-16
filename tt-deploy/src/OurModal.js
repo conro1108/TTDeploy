@@ -43,10 +43,10 @@ class OurModal extends React.Component {
                     <div className="modal-footer">
 
                         
-                            <div className="b-7" data-dismiss="modal"><input type="submit2" value="cancel"/></div>
+                            <div className="b-7" data-dismiss="modal"><input type="submit2" value="cancel" onClick={this.handleCloseModal}/></div>
 
                             <div className="b-6">
-                                <input type="submit2" value="submit"/>
+                                <input type="submit2" value="submit" onClick={this.handleCloseModal}/>
                             </div>
                         
 
@@ -65,7 +65,7 @@ const customStyles = {
     bottom                : 'auto',
     marginRight           : '-50%',
     transform             : 'translate(-50%, -50%)',
-    padding               : '0px'
+    padding               : '0px'      
   }
 };
 
