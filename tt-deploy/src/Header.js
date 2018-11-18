@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LoginButton from './LoginButton'
+import { Route } from 'react-router-dom';
 
 const logo1 ={
     src:'src/logo.jpg',
@@ -30,7 +31,8 @@ class Header extends Component {
             </div>
             <div className = "sub-header2">
                 <div className = "h-4">    
-                     <LoginButton />
+                     <Route exact path="/" Component={LoginButton} />
+                     <Route path="/loginredirect" Component={LoggedInDisplay} />
                 </div>
             </div>       
         </div>
