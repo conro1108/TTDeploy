@@ -4,9 +4,16 @@ class LoggedInDisplay extends Component {
     constructor () {
         super()
         this.state = {
-            queryString : this.props.location.search
+            queryString : ""
         }        
     }
+
+    componentDidMount() {
+        this.setState(
+            {queryString : this.props.location.search}
+        )
+    }
+
     render() {
         return (
             <div className="loged_in_display">
@@ -15,3 +22,5 @@ class LoggedInDisplay extends Component {
         )
     }
 }
+
+export default LoggedInDisplay;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import LoginButton from './LoginButton'
-import { Route } from 'react-router-dom';
+import LoginButton from './LoginButton';
+import LoggedInDisplay from './LoggedInDisplay';
+import { Route, Switch } from 'react-router-dom';
 
 const logo1 ={
     src:'src/logo.jpg',
@@ -31,8 +32,10 @@ class Header extends Component {
             </div>
             <div className = "sub-header2">
                 <div className = "h-4">    
-                     <Route exact path="/" Component={LoginButton} />
-                     <Route path="/loginredirect" Component={LoggedInDisplay} />
+                    <Switch>
+                        <Route path="/loginredirect" component={LoggedInDisplay} />
+                        <Route path="/" component={LoginButton} />
+                    </Switch>
                 </div>
             </div>       
         </div>
