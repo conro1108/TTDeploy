@@ -32,10 +32,10 @@ class Header extends Component {
             </div>
             <div className = "sub-header2">
                 <div className = "h-4">    
-                    <Switch>
-                        <Route path="/loginredirect" component={LoggedInDisplay} />
+                    
+                        <Route path="/" component={LoggedInDisplay} />
                         <Route path="/" component={LoginButton} />
-                    </Switch>
+                    
                 </div>
             </div>       
         </div>

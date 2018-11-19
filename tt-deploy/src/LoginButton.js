@@ -17,7 +17,7 @@ class LoginButton extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://api.threadedtweeter.com/login?mode=webapp').then(
+        axios.get('https://api.threadedtweeter.com/v2/login?mode=webapp').then(
             response => {
                 this.setState({
                     loginUrl : response.data.url,
@@ -28,8 +28,11 @@ class LoginButton extends Component {
                 let keyCookie = this.state.resourceOwnerKeyCookie.split(";")[0].split("=")[1];
                 let secretCookie = this.state.resourceOwnerSecretCookie.split(";")[0].split("=")[1];
 
-                cookies.set('resource_owner_key', keyCookie, {path : '/', expires : new Date('2020-1-1')});
-                cookies.set('resource_owner_secret', secretCookie, {path : '/', expires : new Date('2020-1-1')});
+                cookies.remove('resource_owner_key');
+                cookies.remove('resource_owner_secret');
+
+                cookies.set('resource_owner_key', keyCookie, {path : '/', expires : new Date('2020-1-1'), domain : '.threadedtweeter.com'});
+                cookies.set('resource_owner_secret', secretCookie, {path : '/', expires : new Date('2020-1-1'), domain : '.threadedtweeter.com'});
             } 
         ); 
     }
