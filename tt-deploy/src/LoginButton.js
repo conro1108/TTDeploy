@@ -21,12 +21,14 @@ class LoginButton extends Component {
             response => {
                 this.setState({
                     loginUrl : response.data.url,
-                    resourceOwnerKeyCookie : response.data.cookie_1,
-                    resourceOwnerSecretCookie : response.data.cookie_2
+                    resourceOwnerKeyCookie : cookies.get('resource_owner_key'),
+                    resourceOwnerSecretCookie : cookies.get('resource_owner_secret')
                 })
 
-                let keyCookie = this.state.resourceOwnerKeyCookie.split(";")[0].split("=")[1];
-                let secretCookie = this.state.resourceOwnerSecretCookie.split(";")[0].split("=")[1];
+                let keyCookie = this.state.resourceOwnerKeyCookie;
+                let secretCookie = this.state.resourceOwnerSecretCookie;
+                console.log(keyCookie);
+                console.log(secretCookie);
 
                 cookies.remove('resource_owner_key');
                 cookies.remove('resource_owner_secret');
