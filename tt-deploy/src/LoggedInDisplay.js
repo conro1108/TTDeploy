@@ -5,13 +5,12 @@ class LoggedInDisplay extends Component {
     constructor () {
         super()
         this.state = {
-            loginStatus: false,
             username: ""
         }        
     }
 
     componentDidMount() {
-        axios.get("https://api.threadedtweeter.com/v2/login/status").then(
+        axios.get("https://api.threadedtweeter.com/v2/login/status", {withCredentials: true}).then(
             response => {
                 if (response.data.loginStatus){
                     this.setState({
