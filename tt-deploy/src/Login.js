@@ -36,8 +36,8 @@ class Login extends Component {
     logout() {
         console.log('logging out')
         cookies.remove('access_token_key',  { path: '/' });
-        cookies.remove('access_token_secret',  { path: '/' });
-        window.location.reload();
+        cookies.remove('access_token_secret',  { path: '/' }); 
+        console.log(cookies.get('access_token_key'));
     }
 
     componentDidMount() {
