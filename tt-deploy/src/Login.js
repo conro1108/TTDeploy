@@ -18,7 +18,7 @@ class Login extends Component {
     }
 
     checkLoginStatus() {
-        axios.get("https://api.threadedtweeter.com/v2/login/status", {withCredentials: true}).then(
+        return axios.get("https://api.threadedtweeter.com/v2/login/status", {withCredentials: true}).then(
             response => {
                 if (response.data.loginStatus){
                     this.setState({
@@ -57,6 +57,7 @@ class Login extends Component {
                 }
             }
         )
+
     }
 
     render() {
