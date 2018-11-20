@@ -35,9 +35,11 @@ class Login extends Component {
 
     logout() {
         console.log('logging out')
-        cookies.remove('access_token_key')
-        cookies.remove('access_token_secret')
+        cookies.remove('access_token_key',  { path: '/' });
+        cookies.remove('access_token_secret',  { path: '/' });
+        window.location.reload();
     }
+
     componentDidMount() {
         this.checkLoginStatus().then(
             response => {
@@ -78,7 +80,7 @@ class Login extends Component {
             }
             
         } else {
-            login_state = <button onClick={this.logout}>Logout</button>
+            login_state = <> <span> Hello {this.state.username} </span> <a className="button" onClick={this.logout}>Logout</a> </>
 
         }
 
