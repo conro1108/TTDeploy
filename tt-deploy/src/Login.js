@@ -41,14 +41,14 @@ class Login extends Component {
                         response => {
                             this.setState({
                                 loginUrl : response.data.url,
-                                resourceOwnerKeyCookie : cookies.get('resource_owner_key'),
-                                resourceOwnerSecretCookie : cookies.get('resource_owner_secret'),
+                                resourceOwnerKeyCookie : response.data.cookie_1,
+                                resourceOwnerSecretCookie : response.data.cookie_2,
                                 isLoggedIn : false,
                                 username : null
                             })
                             
-                            let keyCookie = this.state.resourceOwnerKeyCookie;
-                            let secretCookie = this.state.resourceOwnerSecretCookie;
+                            let keyCookie = this.state.resourceOwnerKeyCookie.split(";")[0].split("=")[1];
+                            let secretCookie = this.state.resourceOwnerSecretCookie.split(";")[0].split("=")[1];
             
                             cookies.set('resource_owner_key', keyCookie, {path : '/', expires : new Date('2020-1-1')});
                             cookies.set('resource_owner_secret', secretCookie, {path : '/', expires : new Date('2020-1-1')});
