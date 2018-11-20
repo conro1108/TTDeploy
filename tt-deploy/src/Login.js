@@ -35,7 +35,7 @@ class Login extends Component {
     componentDidMount() {
         this.checkLoginStatus().then(
             response => {
-                if (!this.isLoggedIn) {
+                if (!this.state.isLoggedIn) {
                     axios.get('https://api.threadedtweeter.com/login?mode=webapp').then(
                         response => {
                             this.setState({
