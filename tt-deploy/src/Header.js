@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import LoginButton from './LoginButton';
-import LoggedInDisplay from './LoggedInDisplay';
+import Login from './Login';
 import { Route, Switch } from 'react-router-dom';
 
 const logo1 ={
@@ -33,8 +32,7 @@ class Header extends Component {
             <div className = "sub-header2">
                 <div className = "h-4">    
                     
-                        <Route path="/" component={LoggedInDisplay} />
-                        <Route path="/" component={LoginButton} />
+                        <Route path="/" component={Login} />
                     
                 </div>
             </div>       
