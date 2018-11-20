@@ -40,7 +40,7 @@ class Login extends Component {
             response => {
                 if (!this.state.isLoggedIn) {
                     console.log('not logged in part 2')
-                    axios.get('https://api.threadedtweeter.com/login?mode=webapp').then(
+                    axios.get('https://api.threadedtweeter.com/v2/login?mode=webapp').then(
                         response => {
                             this.setState({
                                 loginUrl : response.data.url,
