@@ -22,10 +22,12 @@ class Login extends Component {
             response => {
                 let temp = Object.assign({}, this.state);
                 if (response.data.loginStatus){
+                    console.log('setting username')
                     temp.isLoggedIn = response.data.Status;
                     temp.username = response.data.username;
                     this.setState(temp);
                 } else {
+                    console.log('not logged in')
                     temp.isLoggedIn = response.data.Status;
                     this.setState(temp);
                 }
@@ -36,6 +38,7 @@ class Login extends Component {
         this.checkLoginStatus().then(
             response => {
                 if (!this.state.isLoggedIn) {
+                    console.log('not logged in part 2')
                     axios.get('https://api.threadedtweeter.com/login?mode=webapp').then(
                         response => {
                             this.setState({
