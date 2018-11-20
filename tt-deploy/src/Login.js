@@ -62,7 +62,7 @@ class Login extends Component {
     render() {
         const isLoggedIn = this.state.isLoggedIn;
         let login_state;
-
+        console.log(this.state);
         if (!isLoggedIn) {
             login_state = <a className="button" href={this.state.loginUrl}>Login with Twitter</a>;
 
