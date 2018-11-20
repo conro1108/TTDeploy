@@ -27,7 +27,7 @@ class Login extends Component {
                 this.setState(temp);
             },
             error => {
-                temp.isLoggedIn = error.data.Status;
+                temp.isLoggedIn = false;
                 this.setState(temp);
             }
         );
