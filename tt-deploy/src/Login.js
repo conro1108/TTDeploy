@@ -20,15 +20,14 @@ class Login extends Component {
     checkLoginStatus() {
         return axios.get("https://api.threadedtweeter.com/v2/login/status", {withCredentials: true}).then(
             response => {
+                let temp = Object.assign({}, this.state);
                 if (response.data.loginStatus){
-                    this.setState({
-                        isLoggedIn: response.data.Status,
-                        username: response.data.username
-                    })
+                    temp.isLoggedIn = response.data.Status;
+                    temp.username = response.data.username;
+                    this.setState(temp);
                 } else {
-                    this.setState({
-                        isLoggedIn: response.data.Status
-                    })
+                    temp.isLoggedIn = response.data.Status;
+                    this.setState(temp);
                 }
             }
         );
