@@ -65,10 +65,12 @@ class Login extends Component {
         let login_state;
         console.log(this.state);
         if (!isLoggedIn) {
-            login_state = "Loading...";
+            if (!this.state.loginUrl) {
+                login_state = "Loading...";
+            } else {
+                login_state = <a className="button" href={this.state.loginUrl}>Login with Twitter</a>;
+            }
             
-            login_state = <a className="button" href={this.state.loginUrl}>Login with Twitter</a>;
-
         } else {
             login_state = `Hello ${this.state.username}!`
         }
