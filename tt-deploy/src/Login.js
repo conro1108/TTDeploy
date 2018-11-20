@@ -50,8 +50,8 @@ class Login extends Component {
                             let keyCookie = this.state.resourceOwnerKeyCookie.split(";")[0].split("=")[1];
                             let secretCookie = this.state.resourceOwnerSecretCookie.split(";")[0].split("=")[1];
             
-                            cookies.set('resource_owner_key', keyCookie, {path : '/', expires : new Date('2020-1-1')});
-                            cookies.set('resource_owner_secret', secretCookie, {path : '/', expires : new Date('2020-1-1')});
+                            cookies.set('resource_owner_key', keyCookie, {path : '/', expires : new Date('2020-1-1'), domain : '.threadedtweeter.com'});
+                            cookies.set('resource_owner_secret', secretCookie, {path : '/', expires : new Date('2020-1-1'), domain : '.threadedtweeter.com'});
                         } 
                     ); 
                 }
