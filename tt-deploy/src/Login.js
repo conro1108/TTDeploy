@@ -22,8 +22,7 @@ class Login extends Component {
             response => {
                 let temp = Object.assign({}, this.state);
                 console.log('checking login status');
-                console.log(response.data);
-                if (response.data.loginStatus == "true"){
+                if (response.data.Status){
                     console.log('setting username')
                     temp.isLoggedIn = response.data.Status;
                     temp.username = response.data.username;
