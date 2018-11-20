@@ -39,6 +39,16 @@
     padding: 10px;
 }
 
+.modal-body{
+  display: flex;
+  align-items: center;
+  flex-direction:row;
+  justify-content: space-around; 
+  color: black;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
 .main-body {
   margin-bottom: 2.5em;
   display: flex;
@@ -187,7 +197,8 @@ textarea[type=text2], select {
   box-sizing: border-box;
   height: 150px;
   font-size:10pt;
-  width: 100%
+  width: 100%;
+ font-family: "Segoe UI";
 }
 
 input[type=submit] {
@@ -202,9 +213,9 @@ input[type=submit] {
   font-weight: 550;
 }
 
-input[type=submit2] {
+button[type=submit2] {
   font-size: 12px;
-  width: 60px;
+  width: 100px;
   background-color: var(--subcolor);
   color: white;
   padding: 10px 10px;
@@ -215,7 +226,7 @@ input[type=submit2] {
   text-align: center;
 }
 
-input[type=link] {
+button[type=link] {
   font-size: 12px;
   width: 100px;
   background-color: var(--maincolor);

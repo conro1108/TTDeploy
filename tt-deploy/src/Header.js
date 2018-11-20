@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import LoginButton from './LoginButton'
 
-const logo1 ={
-    src:'src/logo.jpg',
-    alt: 'logo',
-    style:'width:70px;'   
-};
 
 class Header extends Component {
     render() {
@@ -21,10 +16,9 @@ class Header extends Component {
                     </div>
                 </div>
                 <div className = "h-2">
-            <img 
-            src={logo1.src}
-            alt={logo1.alt}
-            style={logo1.width} />            
+            <img width = "70px"
+            src={require('./logo.JPG')}
+            alt='logo' />            
             </div>
                 <div className = "h-3">Threaded Tweeter</div>
             </div>
