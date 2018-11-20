@@ -37,7 +37,7 @@ class Login extends Component {
         console.log('logging out')
         cookies.remove('access_token_key',  { path: '/', domain : '.threadedtweeter.com' });
         cookies.remove('access_token_secret',  { path: '/', domain : '.threadedtweeter.com' }); 
-        console.log(cookies.get('access_token_key'));
+        window.location.reload();
     }
 
     componentDidMount() {
@@ -47,7 +47,6 @@ class Login extends Component {
                     console.log('not logged in part 2')
                     axios.get('https://api.threadedtweeter.com/v2/login?mode=webapp').then(
                         response => {
-                            console.log(response);
                             this.setState({
                                 loginUrl : response.data.url,
                                 resourceOwnerKeyCookie : response.data.cookie_1,
