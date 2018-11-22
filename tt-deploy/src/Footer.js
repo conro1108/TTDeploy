@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 
 const contactbutton = <form action="http://google.com">
-    <input type="link" value="contact us"/>
+    <button type="link"> contact us </button>
         </form>;
 
 const helpbutton = <form action="http://google.com">
-    <input type="link" value="help"/> 
+    <button type="link"> help </button> 
         </form>;
-
-const logo2 ={
-    src:'src/logo2.jpg',
-    alt: 'logo2',
-    style:'width:55px;'   
-};
 
 class Footer extends Component {
     render() {
@@ -23,10 +17,9 @@ class Footer extends Component {
             {helpbutton}
             </div>
             <div className = "h-2">
-            <img 
-            src={logo2.src}
-            alt={logo2.alt}
-            style={logo2.width} />
+            <img width = "55px"
+            src={require('./logo2.JPG')}
+            alt='logo2' />
             </div>
             <div className = "h-5">  
             {contactbutton}

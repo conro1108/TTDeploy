@@ -16,11 +16,11 @@
 .main-header {
   background-color: var(--maincolor);
   margin-bottom: 2.5em; 
-  height: 84px;
+  min-height: 84px;
   display: flex;
   align-items: center;
   flex-direction:row;
-  justify-content: space-between;   
+  justify-content: space-between; 
 }
 
 .modal-header{
@@ -28,10 +28,25 @@
   font-size: 20px;
   text-align: center;
   height: 60px;
+  display: flex;
 }
 .modal-header .close {
   margin-top: -45px;
-  margin-right: -10px;
+  border-style: hidden;
+}
+
+.modal-title{
+    padding: 10px;
+}
+
+.modal-body{
+  display: flex;
+  align-items: center;
+  flex-direction:row;
+  justify-content: space-around; 
+  color: black;
+  font-size: 14px;
+  margin-top: 10px;
 }
 
 .main-body {
@@ -55,6 +70,7 @@
   align-items: center;
   flex-direction:row;
   justify-content: space-between; 
+  padding: 3%;
 }
 
 .sub-header1 {
@@ -66,7 +82,7 @@
   max-width: 550px
 }
 .modal-content{
-    background: black;
+    padding: 0px;
 }
 
 .sub-header2 {
@@ -117,6 +133,7 @@
 .h-4 {
   font-size: 12px;
   line-height: 2;
+  min-width: 118.17px;
 }
 
 .h-5 {
@@ -159,7 +176,6 @@
 
 .b-6 {
   text-align: left;
-  width: 50%;
 }
 
 b-7{
@@ -182,7 +198,8 @@ textarea[type=text2], select {
   box-sizing: border-box;
   height: 150px;
   font-size:10pt;
-  width: 100%
+  width: 100%;
+ font-family: "Segoe UI";
 }
 
 input[type=submit] {
@@ -197,9 +214,9 @@ input[type=submit] {
   font-weight: 550;
 }
 
-input[type=submit2] {
+button[type=submit2] {
   font-size: 12px;
-  width: 60px;
+  width: 100px;
   background-color: var(--subcolor);
   color: white;
   padding: 10px 10px;
@@ -210,7 +227,7 @@ input[type=submit2] {
   text-align: center;
 }
 
-input[type=link] {
+button[type=link] {
   font-size: 12px;
   width: 100px;
   background-color: var(--maincolor);
@@ -264,11 +281,13 @@ input[type=link] {
 }
 .close{
   color:white;
+  background: inherit;
   opacity: .8;
   font-weight: 100;
 }
 .close:hover{
   color:white;
+  opacity: 1;
 }
 a.button {
   text-decoration: none;
