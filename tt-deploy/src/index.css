@@ -3,6 +3,58 @@
   --subcolor:   #66B0C1;
   --grey: #BABABA;
 }
+
+.splash-header {
+  background-color: var(--maincolor);
+  min-height: 200px;
+}
+
+.splash-body {
+  background-color: #E5E5E5;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  flex-direction:row;
+  justify-content: space-between; 
+}
+
+.splash-subfooter{
+  display: flex;
+  align-items: center;
+  flex-direction:column;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 30px;
+}
+
+.splash-footer{
+  background-color: var(--subcolor);
+  min-height: 100vh;
+  margin: 0;
+  font-family: "Segoe UI";
+  color: white;
+}
+
+.splash-1{
+  font-weight: bold;
+  font-size: 80px;
+  line-height: 1.1;
+  text-align: center;
+  padding-top: 70px
+}
+
+.splash-2{
+    margin-left: 50px;
+}
+
+.splash-5{
+    padding: 30px;
+}
+
+.splash-4{
+    margin-right: 50px;
+}
+
 .bodystyle{
   background-color: #E5E5E5;
   display: flex;
