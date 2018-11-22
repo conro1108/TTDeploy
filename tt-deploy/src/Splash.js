@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LoginButton from './LoginButton'
+import LoginButton from './LoginButton';
 
 const contactbutton = <form action="http://google.com">
     <button type="link"> contact us </button>

@@ -3,13 +3,15 @@ import Header from './Header';
 import Body from './Body';
 import Footer from './Footer';
 import Splash from './Splash';
+import Contact from './Contact';
+import Help from './Help';
 
 class Page extends Component {
     constructor(props){
         super(props);
-        this.state = {loggedin: false,
+        this.state = {loggedin: true,
                      help: false,
-                     contact: false}; 
+                     contact: true}; 
     }
     render() {
         let content;
@@ -20,14 +22,14 @@ class Page extends Component {
             if(this.state.help === true){//help page
                 content = <div className = "bodystyle">
             <Header />
-            <Body />
+            <Help />
             <Footer />
             </div>
             }
             if(this.state.contact === true){// contact page
                 content = <div className = "bodystyle">
             <Header />
-            <Body />
+            <Contact />
             <Footer />
             </div>
             }
@@ -42,7 +44,7 @@ class Page extends Component {
         }
         
         return (
-            <div className = "bodystyle">
+            <div>
             {content}
             </div>
         );

@@ -4,6 +4,31 @@
   --grey: #BABABA;
 }
 
+.help{
+    flex: 1;
+    color:black;
+    padding-left: 80px;
+    padding-right: 80px;
+    text-align: left;
+}
+
+.help-header{
+    font-size: 40px;
+    font-weight: bold;
+    padding-bottom: 20px;
+    color: var(--maincolor);
+}
+
+.help-subheader{
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.help-body{
+}
+
 .splash-header {
   background-color: var(--maincolor);
   min-height: 200px;
