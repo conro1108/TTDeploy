@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import LoginButton from './LoginButton';
+import Login from './Login';
+import { Route, Switch } from 'react-router-dom';
 
 const contactbutton = <form action="http://google.com">
     <button type="link"> contact us </button>
@@ -20,7 +21,7 @@ class Splash extends Component {
                     {contactbutton}
                     </div>
                     <div className = "splash-3">    
-                    <LoginButton />
+                    <Route path="/" component={Login} />
                     </div>
                     <div className = "splash-4">    
                     {helpbutton}
