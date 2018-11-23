@@ -1,25 +1,10 @@
-import React, { Component } from 'react';
-import Tweet from 'Tweet';
-import OurModal from 'OurModal';
+import React from 'react';
+import Tweet from './Tweet';
+import OurModal from './OurModal';
 
 
 const sendtweet = <div className="b-3">
     <button type="submit2">submit</button></div>;
-
-
-
-const customStyles = {
-    content : {
-        top                   : '30%',
-        left                  : '50%',
-        right                 : 'auto',
-        bottom                : 'auto',
-        marginRight           : '-50%',
-        transform             : 'translate(-50%, -50%)',
-        padding               : '0px'      
-    }
-};
-
 
 
 class Body extends React.Component {
@@ -28,11 +13,11 @@ class Body extends React.Component {
         
         this.handleaddbox = this.handleaddbox.bind(this);
         this.handleremovebox = this.handleremovebox.bind(this);
+        
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleCancel =       this.handleCancel.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleCancel =        this.handleCancel.bind(this);
-        
         const boxnum = {index: 1};
         const boxes = [];
         boxes.push({boxnum});
@@ -47,6 +32,16 @@ class Body extends React.Component {
         newBoxes.push({index: newBoxes.length});
         this.setState({boxes : newBoxes});
         console.log("handleaddbox " + this.state.boxes.length);
+    }
+    
+    handleOpenModal () {
+        this.setState({ showModal: true });
+        console.log("Open Modal");
+    }
+
+    handleCloseModal () {
+        this.setState({ showModal: false });
+        console.log("Close Modal");
     }
     
     handleremovebox(){
@@ -81,14 +76,6 @@ class Body extends React.Component {
             console.log("set splitting state on");
         }
     }
-    handleOpenModal () {
-        this.setState({ showModal: true });
-    }
-
-    handleCloseModal () {
-        this.setState({ showModal: false });
-    }
-
 
     render() {
         const boxes = this.state.boxes;
@@ -110,29 +97,13 @@ class Body extends React.Component {
                 </button>
             </div>
         }
-        let split;
-        const splitstate = this.state.splitting;
-        if(splitstate === "off"){ split =
-            <div className="b-1">
-                Auto splitting: off
-                    </div>;
-                                 console.log("splitting displays off");
-                                }
-        else{ split =
-            <div className="b-1">
-                Auto splitting: on
-                    </div>;
-             console.log("splitting displays on");
-            }
+
         return (
             <div className = "main-body">
             <div className = "sub-body">
-            <div className = "sub-body1">
-            {split}
+
             
-            <OurModal showModal={this.state.showModal} handleOpenModal = {this.handleOpenModal.bind(this)} handleCloseModal = {this.handleCloseModal.bind(this)}/>
-            
-            </div>
+            <OurModal showModal={this.state.showModal}  Bsplitting={this.state.Bsplitting}  splitting={this.state.splitting}  handleInputChange = {this.handleInputChange} handleCancel = {this.handleCancel} handleOpenModal = {this.handleOpenModal} handleCloseModal = {this.handleCloseModal}/>
             
             <Tweets boxes={boxes}/>             
             {button}

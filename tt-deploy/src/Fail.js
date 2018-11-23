@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const againbutton = <form action="http://google.com">
     <button type="link"> try again </button> 
