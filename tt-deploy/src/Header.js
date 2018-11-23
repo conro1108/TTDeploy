@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import LoginButton from './LoginButton';
-import LoggedInDisplay from './LoggedInDisplay';
+import Login from './Login';
 import { Route, Switch } from 'react-router-dom';
 
 
@@ -28,10 +27,9 @@ class Header extends Component {
             </div>
             <div className = "sub-header2">
                 <div className = "h-4">    
-                    <Switch>
-                        <Route path="/loginredirect" component={LoggedInDisplay} />
-                        <Route path="/" component={LoginButton} />
-                    </Switch>
+                    
+                        <Route path="/" component={Login} />
+                    
                 </div>
             </div>       
         </div>
