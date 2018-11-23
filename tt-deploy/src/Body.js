@@ -1,19 +1,12 @@
 import React, { Component } from 'react';
-import ReactModal, {Modal} from 'react-modal';
-
+import Tweet from 'Tweet';
+import OurModal from 'OurModal';
 
 
 const sendtweet = <div className="b-3">
     <button type="submit2">submit</button></div>;
 
-const Tweets = ({boxes}) => (
-    <div>
-    {boxes.map( box =>(
-    <div key = {box.index}>
-    <Tweet />
-    </div>))}
-    </div>
-)
+
 
 const customStyles = {
     content : {
@@ -27,33 +20,7 @@ const customStyles = {
     }
 };
 
-class Tweet extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            value:''
-        };
-        this.handleChange =        this.handleChange.bind(this);
-    } 
-    handleChange(event){
-        this.setState({value: event.target.value})
-    }
-    render(){
-        return(
-        <div>
-        <textarea type="text2" id="tweet" name="tweet" onChange={this.handleChange} value={this.state.value}/>
-        <div className = "sub-body2">
-        <div className="b-4">
-        Add picture
-        </div>
-            <div className="b-5">
-    {this.state.value.length}/280 
-        </div>
-        </div> 
-        </div>
-        )
-    }
-}
+
 
 class Body extends React.Component {
     constructor(props){
@@ -162,38 +129,9 @@ class Body extends React.Component {
             <div className = "sub-body">
             <div className = "sub-body1">
             {split}
-            <div className="b-2">
-
-            <button type="button" className="notbutton" onClick={this.handleOpenModal}>Splitting options</button>
-            <ReactModal 
-            isOpen={this.state.showModal} style={customStyles}>
-            <div className="modal-header">
-            <div className="modal-title" id="exampleModalLabel">
-            Tweet splitting allows us to formate your thread for you.
-            </div>
-            <button  onClick={this.handleCloseModal} type="button" className="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div className="modal-body">
-            <div>
-            Basic splitting: 
-            <input
-            name="Bsplitting"
-            type="checkbox"
-            checked={this.state.Bsplitting}
-            onChange={this.handleInputChange} />
-            </div>
-            </div>
-
-            <div className="modal-footer">
-            <div className="b-7" data-dismiss="modal"><button type="submit2"onClick={this.handleCancel}>cancel</button></div>
-            <div className="b-6">
-            <button type="submit2" onClick={this.handleCloseModal}> submit </button>
-            </div>
-            </div>
-            </ReactModal>
-            </div>
+            
+            <OurModal showModal={this.state.showModal} handleOpenModal = {this.handleOpenModal.bind(this)} handleCloseModal = {this.handleCloseModal.bind(this)}/>
+            
             </div>
             
             <Tweets boxes={boxes}/>             
@@ -205,5 +143,14 @@ class Body extends React.Component {
         );
     }
 }
+
+const Tweets = ({boxes}) => (
+    <div>
+    {boxes.map( box =>(
+    <div key = {box.index}>
+    <Tweet />
+    </div>))}
+    </div>
+)
 
 export default Body;
