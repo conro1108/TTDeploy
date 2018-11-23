@@ -14,7 +14,7 @@ class Page extends Component {
         this.state = {loggedin: true,
                      help: false,
                      contact: false,
-                     tweetsent: "success"}; 
+                     tweetsent: "no"}; 
     }
     render() {
         let content;
