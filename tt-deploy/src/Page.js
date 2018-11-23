@@ -14,7 +14,7 @@ class Page extends Component {
         this.state = {loggedin: true,
                      help: false,
                      contact: false,
-                     tweetsent: "fail"}; 
+                     tweetsent: "success"}; 
     }
     render() {
         let content;
@@ -46,7 +46,7 @@ class Page extends Component {
                     <Footer />
                     </div>
                 }
-                if(this.state.tweetsent === "fail"){
+                else if(this.state.tweetsent === "fail"){
                         content = 
                     <div className = "bodystyle">
                     <Header />

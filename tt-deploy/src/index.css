@@ -4,6 +4,49 @@
   --grey: #BABABA;
 }
 
+.after-tweet{
+    flex: 1;
+    color:black;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.after-tweet-header{
+    max-width: 600px;
+    align-content: center;
+}
+
+.after-tweet-body{
+    margin: 20px;
+}
+
+.after-tweet-footer{
+    margin: 20px;
+}
+
+.success-1{
+    color: var(--subcolor);
+    font-weight: bold;
+    font-size: 36px;
+}
+
+.success-2{
+    text-align: justify;
+    margin: 20px;
+}
+
+.fail-1{
+    color: #CF3D3D;
+    font-weight: bold;
+    font-size: 36px;
+}
+
+.fail-2{
+    text-align: justify;
+    margin: 20px;
+}
+
 .help{
     flex: 1;
     color:black;
