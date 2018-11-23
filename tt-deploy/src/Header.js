@@ -5,6 +5,8 @@ import { Route, Switch } from 'react-router-dom';
 
 
 class Header extends Component {
+    constructor(props){
+    super(props);}
     render() {
         return (
             <div className = "main-header">
@@ -22,7 +24,7 @@ class Header extends Component {
             src={require('./logo.JPG')}
             alt='logo' />            
             </div>
-                <div className = "h-3">Threaded Tweeter</div>
+                <div className = "h-3" onClick = {this.props.handleHome}>Threaded Tweeter</div>
             </div>
             <div className = "sub-header2">
                 <div className = "h-4">    

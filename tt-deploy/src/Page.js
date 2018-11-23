@@ -15,7 +15,24 @@ class Page extends Component {
                      help: false,
                      contact: false,
                      tweetsent: "no"}; 
+    this.handleHelp = this.handleHelp.bind(this);
+    this.handleContact = this.handleContact.bind(this);
+    this.handleHome = this.handleHome.bind(this);
     }
+    handleHelp(){
+        if(this.state.loggedin === true){
+            this.setState({help: true, contact: false});
+        }
+    }
+    handleContact(){
+        if(this.state.loggedin === true){
+            this.setState({help: false, contact: true});
+        }
+    }
+    handleHome(){
+        this.setState({help: false, contact: false});
+    }
+        
     render() {
         let content;
         if( this.state.loggedin === false){//landing page
@@ -24,16 +41,16 @@ class Page extends Component {
         else{
             if(this.state.help === true){//help page
                 content = <div className = "bodystyle">
-            <Header />
+            <Header handleHome= {this.handleHome}/>
             <Help />
-            <Footer />
+            <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
             </div>
             }
             if(this.state.contact === true){// contact page
                 content = <div className = "bodystyle">
-            <Header />
+            <Header handleHome= {this.handleHome}/>
             <Contact />
-            <Footer />
+            <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
             </div>
             }
             if(this.state.contact === false && this.state.help ===false){//normal tweet page
@@ -41,25 +58,25 @@ class Page extends Component {
                 if(this.state.tweetsent === "success"){
                         content = 
                     <div className = "bodystyle">
-                    <Header />
+                    <Header handleHome= {this.handleHome}/>
                     <Success />
-                    <Footer />
+                    <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
                     </div>
                 }
                 else if(this.state.tweetsent === "fail"){
                         content = 
                     <div className = "bodystyle">
-                    <Header />
+                    <Header handleHome= {this.handleHome}/>
                     <Fail />
-                    <Footer />
+                    <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
                     </div>
                 }
                 else{
                                             content = 
                     <div className = "bodystyle">
-                    <Header />
+                    <Header handleHome= {this.handleHome}/>
                     <Body />
-                    <Footer />
+                    <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
                     </div>
                 }
             }

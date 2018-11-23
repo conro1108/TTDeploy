@@ -2,6 +2,7 @@
   --maincolor:   #2A606C;
   --subcolor:   #66B0C1;
   --grey: #BABABA;
+  --red: #CF3D3D;
 }
 
 .after-tweet{
@@ -37,7 +38,7 @@
 }
 
 .fail-1{
-    color: #CF3D3D;
+    color: var(--red);
     font-weight: bold;
     font-size: 36px;
 }
@@ -231,6 +232,7 @@
   display: flex;
   flex-direction:row;
   justify-content: space-between; 
+  margin-bottom: 2px;
 }
 
 .h-1 {
@@ -248,6 +250,9 @@
   font-weight: bold;
   font-size: 38px;
   line-height: 1.1;
+}
+.h-3:hover{
+    cursor: pointer;
 }
 
 .h-4 {
@@ -280,11 +285,22 @@
   text-align: left;
   font-size: 18px;
   text-decoration: underline;
+  display:flex;
+  flex-direction: column;
+  width: 35%;
+  margin: inherit;
 }
 
 .b-5 {
   margin-top:   -5px;
   color: var(--grey);  
+  text-align: right;
+  font-size: 12px;
+}
+
+.b-5-red {  
+  margin-top:   -5px;
+  color: var(--red);  
   text-align: right;
   font-size: 12px;
 }
@@ -309,6 +325,16 @@ input[type=text], select {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+input[type=file]{
+  font-size: 12px;
+  text-decoration: underline;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  display: inline-block;
+  color: var(--subcolor);
 }
 
 textarea[type=text2], select { 
@@ -390,7 +416,6 @@ button[type=link] {
 }
 
 .notbutton{
-  font-size: 18px;
   text-decoration: underline;
   border: none;
   background-color: inherit;
