@@ -1,16 +1,11 @@
 import React from 'react';
 
-const againbutton = <form action="http://google.com">
-    <button type="link"> try again </button> 
-        </form>;
 
 class Fail extends React.Component {
     constructor(props){
         super(props);
-        this.state = {
-                      Bsplitting: false,
-                      splitting: "off",
-                      showModal: false};        
+        this.state = {//tweet
+ };        
     }
     
    
@@ -27,12 +22,12 @@ class Fail extends React.Component {
             </div>
             </div>
             <div className = "after-tweet-body">
-            ukno
+            TODO:PUT TWEET
             </div>
             <div className = "after-tweet-footer">
-            {againbutton}
+            <button type="link" onClick = {this.props.handleHome}> post another </button> 
             </div>
-            <button type="button" className="notbutton" >what happened?</button>
+            <button type="button" className="notbutton" onClick = {this.props.handleHelp}>what happened?</button>
             </div>
         );
     }

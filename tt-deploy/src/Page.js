@@ -30,7 +30,7 @@ class Page extends Component {
         }
     }
     handleHome(){
-        this.setState({help: false, contact: false});
+        this.setState({help: false, contact: false, tweetsent: "no"});
     }
         
     render() {
@@ -59,7 +59,7 @@ class Page extends Component {
                         content = 
                     <div className = "bodystyle">
                     <Header handleHome= {this.handleHome}/>
-                    <Success />
+                    <Success handleHome= {this.handleHome}/>
                     <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
                     </div>
                 }
@@ -67,7 +67,7 @@ class Page extends Component {
                         content = 
                     <div className = "bodystyle">
                     <Header handleHome= {this.handleHome}/>
-                    <Fail />
+                    <Fail handleHome= {this.handleHome }handleHelp = {this.handleHelp}/>
                     <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
                     </div>
                 }
