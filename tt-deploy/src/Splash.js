@@ -2,13 +2,10 @@ import React, { Component } from 'react';
 import Login from './Login';
 import { Route, Switch } from 'react-router-dom';
 
-const contactbutton = <form action="http://google.com">
-    <button type="link"> contact us </button>
-</form>;
-const helpbutton = <form action="http://google.com">
-    <button type="link"> help </button> 
-</form>;
+
 class Splash extends Component {
+    constructor(props){
+    super(props);}
     render() {
         return (
             <div className = "splash-footer">
@@ -18,13 +15,13 @@ class Splash extends Component {
                     </div>
                     <div className = "splash-body">
                     <div className = "splash-2">    
-                    {contactbutton}
+                        <button type="link" onClick = {this.props.handleContact}> contact us </button>
                     </div>
                     <div className = "splash-3">    
                     <Route path="/" component={Login} />
                     </div>
-                    <div className = "splash-4">    
-                    {helpbutton}
+                    <div className = "splash-4" >    
+                        <button type="link" onClick = {this.props.handleHelp}> help </button>
                     </div>
 
                 </div>

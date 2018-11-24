@@ -20,14 +20,12 @@ class Page extends Component {
     this.handleHome = this.handleHome.bind(this);
     }
     handleHelp(){
-        if(this.state.loggedin === true){
-            this.setState({help: true, contact: false});
-        }
+        this.setState({help: true, contact: false});
+        console.log("help");
     }
     handleContact(){
-        if(this.state.loggedin === true){
-            this.setState({help: false, contact: true});
-        }
+        this.setState({help: false, contact: true});
+        console.log("contact us");
     }
     handleHome(){
         this.setState({help: false, contact: false, tweetsent: "no"});
@@ -35,10 +33,6 @@ class Page extends Component {
         
     render() {
         let content;
-        if( this.state.loggedin === false){//landing page
-            content = <Splash/>;
-        }
-        else{
             if(this.state.help === true){//help page
                 content = <div className = "bodystyle">
             <Header handleHome= {this.handleHome}/>
@@ -46,14 +40,14 @@ class Page extends Component {
             <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
             </div>
             }
-            if(this.state.contact === true){// contact page
+            else if(this.state.contact === true){// contact page
                 content = <div className = "bodystyle">
             <Header handleHome= {this.handleHome}/>
             <Contact />
             <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
             </div>
             }
-            if(this.state.contact === false && this.state.help ===false){//normal tweet page
+            else if(this.state.loggedin === true){//normal tweet page
 
                 if(this.state.tweetsent === "success"){
                         content = 
@@ -80,6 +74,8 @@ class Page extends Component {
                     </div>
                 }
             }
+        else{//splash
+            content = <Splash handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>;
         }
         
         return (

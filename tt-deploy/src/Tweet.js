@@ -15,10 +15,9 @@ class Tweet extends React.Component{
         this.setState({value: event.target.value});
     }
     fileHandler(event)  {
-        this.setState({selectedFile: event.target.files[0]})
-        console.log(this.state.selectedFile) 
+        this.setState({file: event.target.files[0]})
+        console.log(this.state.file) 
         //axios.post('somewhere.com/file-upload', this.state.selectedFile)
-        
     }
 
     render(){
@@ -41,7 +40,6 @@ class Tweet extends React.Component{
         <div className = "sub-body2">
         
         <div className="b-4"><input type="file" onChange={this.fileHandler}/></div>
-        
             {charlimit}
         </div> 
         </div>
