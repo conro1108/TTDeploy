@@ -18,9 +18,9 @@ class Body extends React.Component {
         this.handleCancel =       this.handleCancel.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
-        const boxnum = {index: 1};
+        const boxnum = {index: 0};
         const boxes = [];
-        boxes.push({boxnum});
+        boxes.push(boxnum);
         this.state = {boxes,
                       Bsplitting: false,
                       splitting: "off",
