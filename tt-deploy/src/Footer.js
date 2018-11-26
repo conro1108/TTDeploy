@@ -1,20 +1,15 @@
 import React, { Component } from 'react';
 
-const contactbutton = <form action="http://google.com">
-    <button type="link"> contact us </button>
-        </form>;
-
-const helpbutton = <form action="http://google.com">
-    <button type="link"> help </button> 
-        </form>;
 
 class Footer extends Component {
+    constructor(props){
+        super(props);}
     render() {
         return (
 
             <div className = "main-footer">
             <div className = "h-1">
-            {helpbutton}
+            <button type="link" onClick = {this.props.handleHelp}> help </button>
             </div>
             <div className = "h-2">
             <img width = "55px"
@@ -22,7 +17,7 @@ class Footer extends Component {
             alt='logo2' />
             </div>
             <div className = "h-5">  
-            {contactbutton}
+            <button type="link" onClick = {this.props.handleContact}> contact us </button>
             </div>
             </div> 
         );
