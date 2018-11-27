@@ -38,14 +38,14 @@ class Body extends React.Component {
         }
         let thread = {"TWEETS" : tweets};
         console.log(JSON.stringify(thread));
-        axios.post("https://api.threadedtweeter.com/v2/post-thread", {data: JSON.stringify(thread), withCredentials: true})
-        .then(response => {
-            console.log(response);
-            console.log(response.data);
-        },
-        error => {
-            console.log(error);
-        })
+        let xhttp = new XMLHttpRequest(); 
+        xhttp.open("POST", "https://api.threadedtweeter.com/v2/post-thread", false); 
+        xhttp.withCredentials=true;
+        xhttp.send(JSON.stringify({"TWEETS":[{"STATUS":"agdfgsdfgsdf","MEDIA":[]}]}));
+        let response = xhttp.response;
+        console.log(response);
+
+
     }
 
     handleaddbox(){
