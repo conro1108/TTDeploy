@@ -38,7 +38,7 @@ class Body extends React.Component {
         }
         let thread = {"TWEETS" : tweets};
         console.log(JSON.stringify(thread));
-        axios.post("https://api.threadedtweeter.com/v2/post-thread", {data: thread, withCredentials: true})
+        axios.post("https://api.threadedtweeter.com/v2/post-thread", {data: JSON.stringify(thread), withCredentials: true})
         .then(response => {
             console.log(response);
             console.log(response.data);
