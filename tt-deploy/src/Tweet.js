@@ -12,7 +12,9 @@ class Tweet extends React.Component{
         this.fileHandler =        this.fileHandler.bind(this);
     } 
     handleChange(event){
-        this.setState({value: event.target.value});
+        const text = event.target.value;
+        this.setState({value: text});
+        this.props.onChange(this.props.id, text);
     }
     fileHandler(event)  {
         this.setState({file: event.target.files[0]})
@@ -21,7 +23,6 @@ class Tweet extends React.Component{
     }
 
     render(){
-        
         let charlimit;
         if(this.state.value.length <= 280){
             charlimit = <div className="b-5">
