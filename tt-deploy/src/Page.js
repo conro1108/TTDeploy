@@ -11,7 +11,7 @@ import Fail from './Fail';
 class Page extends Component {
     constructor(props){
         super(props);
-        this.state = {loggedin: true,
+        this.state = {loggedin: false,
                      help: false,
                      contact: false,
                      tweetsent: "no"}; 
