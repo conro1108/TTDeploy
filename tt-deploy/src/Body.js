@@ -1,11 +1,7 @@
 import React from 'react';
 import Tweet from './Tweet';
 import OurModal from './OurModal';
-
-
-const sendtweet = <div className="b-3">
-    <button type="submit2">submit</button></div>;
-
+import axios from "axios";
 
 class Body extends React.Component {
     constructor(props){
@@ -15,6 +11,10 @@ class Body extends React.Component {
         this.handleremovebox = this.handleremovebox.bind(this);
         
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleTweetChange = this.handleTweetChange.bind(this);
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+
         this.handleCancel =       this.handleCancel.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -27,6 +27,23 @@ class Body extends React.Component {
                       showModal: false};        
     }
     
+    handleSubmit(){
+        let numTweets = this.state.boxes.length;
+        let tweets = [];
+        for(let i = 0; i < numTweets; i++) {
+            tweets.push({
+                "STATUS": this.state[i],
+                "MEDIA": []
+            })
+        }
+        let thread = {"TWEETS" : tweets};
+        axios.post("https://api.threadedtweeter.com/v2/post-thread", {thread})
+        .then(response => {
+            console.log(response);
+            console.log(response.data);
+        })
+    }
+
     handleaddbox(){
         const newBoxes = this.state.boxes;
         newBoxes.push({index: newBoxes.length});
@@ -77,7 +94,20 @@ class Body extends React.Component {
         }
     }
 
+    handleTweetChange(tweetId, value) {
+        this.setState({[tweetId]: value});
+    }
+
     render() {
+        const Tweets = this.state.boxes.map(box => (
+            <Tweet 
+                key={box.index}
+                id={box.index}
+                onChange={this.handleTweetChange}
+                value={this.state[box]}    
+            />
+        ));
+
         const boxes = this.state.boxes;
         const boxnum = boxes.length;
         let button;
@@ -98,6 +128,8 @@ class Body extends React.Component {
             </div>
         }
 
+        const sendtweet = <div className="b-3"><button type="submit2" onClick = {this.handleSubmit}>submit</button></div>;
+
         return (
             <div className = "main-body">
             <div className = "sub-body">
@@ -105,7 +137,7 @@ class Body extends React.Component {
             
             <OurModal showModal={this.state.showModal}  Bsplitting={this.state.Bsplitting}  splitting={this.state.splitting}  handleInputChange = {this.handleInputChange} handleCancel = {this.handleCancel} handleOpenModal = {this.handleOpenModal} handleCloseModal = {this.handleCloseModal}/>
             
-            <Tweets boxes={boxes}/>             
+            {Tweets}             
             {button}
             {sendtweet}
 
@@ -115,13 +147,15 @@ class Body extends React.Component {
     }
 }
 
-const Tweets = ({boxes}) => (
+/*const Tweets = ({boxes}) => (
     <div>
     {boxes.map( box =>(
-    <div key = {box.index}>
-    <Tweet />
-    </div>))}
+    <Tweet 
+        key={box}
+        id={box}
+        onChange
+    />))}
     </div>
-)
+)*/
 
 export default Body;
