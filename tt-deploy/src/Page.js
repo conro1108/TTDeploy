@@ -7,11 +7,15 @@ import Contact from './Contact';
 import Help from './Help';
 import Success from './Success';
 import Fail from './Fail';
+import axios from 'axios';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 class Page extends Component {
     constructor(props){
         super(props);
-        this.state = {loggedin: false,
+        this.state = {isLoggedIn: false,
                      help: false,
                      contact: false,
                      tweetsent: "no"}; 
@@ -30,19 +34,63 @@ class Page extends Component {
     handleHome(){
         this.setState({help: false, contact: false, tweetsent: "no"});
     }
-        
+    
+    checkLoginStatus() {
+        let temp = Object.assign({}, this.state);
+
+        return axios.get("https://api.threadedtweeter.com/v2/login/status", {withCredentials: true}).then(
+            response => {
+                temp.isLoggedIn = response.data.Status;
+                temp.username = response.data.username;
+                this.setState(temp);
+            },
+            error => {
+                temp.isLoggedIn = false;
+                this.setState(temp);
+            }
+        );
+    }
+     
+    componentDidMount() {
+        this.checkLoginStatus().then(
+            response => {
+                if (!this.state.isLoggedIn) {
+                    console.log('not logged in part 2')
+                    axios.get('https://api.threadedtweeter.com/v2/login?mode=webapp').then(
+                        response => {
+                            this.setState({
+                                loginUrl : response.data.url,
+                                resourceOwnerKeyCookie : response.data.cookie_1,
+                                resourceOwnerSecretCookie : response.data.cookie_2,
+                                isLoggedIn : false,
+                                username : null
+                            })
+                            
+                            let keyCookie = this.state.resourceOwnerKeyCookie.split(";")[0].split("=")[1];
+                            let secretCookie = this.state.resourceOwnerSecretCookie.split(";")[0].split("=")[1];
+            
+                            cookies.set('resource_owner_key', keyCookie, {path : '/', expires : new Date('2020-1-1'), domain : '.threadedtweeter.com'});
+                            cookies.set('resource_owner_secret', secretCookie, {path : '/', expires : new Date('2020-1-1'), domain : '.threadedtweeter.com'});
+                        } 
+                    ); 
+                }
+            }
+        )
+
+    }
+    
     render() {
         let content;
             if(this.state.help === true){//help page
                 content = <div className = "bodystyle">
-            <Header handleHome= {this.handleHome}/>
+            <Header handleHome= {this.handleHome} checkLoginStatus = {this.props.checkLoginStatus} componentDidMount = {this.props.componentDidMount}/>
             <Help />
             <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
             </div>
             }
             else if(this.state.contact === true){// contact page
                 content = <div className = "bodystyle">
-            <Header handleHome= {this.handleHome}/>
+            <Header handleHome= {this.handleHome} checkLoginStatus = {this.props.checkLoginStatus} componentDidMount = {this.props.componentDidMount}/>
             <Contact />
             <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
             </div>
@@ -52,7 +100,7 @@ class Page extends Component {
                 if(this.state.tweetsent === "success"){
                         content = 
                     <div className = "bodystyle">
-                    <Header handleHome= {this.handleHome}/>
+                    <Header handleHome= {this.handleHome} checkLoginStatus = {this.props.checkLoginStatus} componentDidMount = {this.props.componentDidMount}/>
                     <Success handleHome= {this.handleHome}/>
                     <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
                     </div>
@@ -60,7 +108,7 @@ class Page extends Component {
                 else if(this.state.tweetsent === "fail"){
                         content = 
                     <div className = "bodystyle">
-                    <Header handleHome= {this.handleHome}/>
+                    <Header handleHome= {this.handleHome} checkLoginStatus = {this.props.checkLoginStatus} componentDidMount = {this.props.componentDidMount}/>
                     <Fail handleHome= {this.handleHome }handleHelp = {this.handleHelp}/>
                     <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
                     </div>
@@ -68,14 +116,14 @@ class Page extends Component {
                 else{
                                             content = 
                     <div className = "bodystyle">
-                    <Header handleHome= {this.handleHome}/>
+                    <Header handleHome= {this.handleHome} checkLoginStatus = {this.props.checkLoginStatus} componentDidMount = {this.props.componentDidMount}/>
                     <Body />
                     <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
                     </div>
                 }
             }
         else{//splash
-            content = <Splash handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>;
+            content = <Splash handleHelp = {this.handleHelp} handleContact = {this.handleContact} checkLoginStatus = {this.props.checkLoginStatus} componentDidMount = {this.props.componentDidMount}/>;
         }
         
         return (
