@@ -41,7 +41,7 @@ class Body extends React.Component {
         let xhttp = new XMLHttpRequest(); 
         xhttp.open("POST", "https://api.threadedtweeter.com/v2/post-thread", false); 
         xhttp.withCredentials=true;
-        xhttp.send(JSON.stringify({"TWEETS":[{"STATUS":"agdfgsdfgsdf","MEDIA":[]}]}));
+        xhttp.send(JSON.stringify(thread));
         let response = xhttp.response;
         console.log(response);
 
