@@ -10,7 +10,7 @@ class Login extends Component {
     render() {
         const isLoggedIn = this.props.isLoggedIn;
         let login_state;
-        console.log("usr: "+ this.props.username + ",  Scookie: " + this.props.resourceOwnerSecretCookie + ", Kcookie: " + this.props.resourceOwnerKeyCookie + ", Url: " + this.props.loginUrl + ", " + isLoggedIn);
+        console.log("usr: "+ this.props.username + ",  Scookie: " + this.props.resourceOwnerSecretCookie + ", Kcookie: " + this.props.resourceOwnerKeyCookie + ", Url: " + this.props.loginUrl + ", isLoggedIn: " + this.props.isLoggedIn);
         if (!isLoggedIn) {
             if (!this.props.loginUrl) {//!this.props.loginUrl
                 login_state = "Loading...";
