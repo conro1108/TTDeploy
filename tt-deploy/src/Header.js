@@ -28,7 +28,7 @@ class Header extends Component {
             <div className = "sub-header2">
                 <div className = "h-4">    
                     
-                        <Route path="/" component={Login} />
+                        <Route path="/" component={Login} checkLoginStatus = {this.props.checkLoginStatus} componentDidMount = {this.props.componentDidMount} logout = {this.props.logout}/>
                     
                 </div>
             </div>       
