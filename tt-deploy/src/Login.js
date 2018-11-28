@@ -13,14 +13,6 @@ class Login extends Component {
     }
 
 
-    logout() {
-        console.log('logging out')
-        cookies.remove('access_token_key',  { path: '/', domain : '.threadedtweeter.com' });
-        cookies.remove('access_token_secret',  { path: '/', domain : '.threadedtweeter.com' }); 
-        window.location.reload();
-    }
-
-
     render() {
         const isLoggedIn = this.props.isLoggedIn;
         let login_state;

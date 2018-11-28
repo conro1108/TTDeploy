@@ -35,6 +35,14 @@ class Page extends Component {
         this.setState({help: false, contact: false, tweetsent: "no"});
     }
     
+    logout() {
+        const cookies = this.state.cookies;
+        console.log('logging out')
+        cookies.remove('access_token_key',  { path: '/', domain : '.threadedtweeter.com' });
+        cookies.remove('access_token_secret',  { path: '/', domain : '.threadedtweeter.com' }); 
+        window.location.reload();
+    }
+    
     checkLoginStatus() {
         let temp = Object.assign({}, this.state);
 
@@ -83,14 +91,14 @@ class Page extends Component {
         let content;
             if(this.state.help === true){//help page
                 content = <div className = "bodystyle">
-            <Header handleHome= {this.handleHome} checkLoginStatus = {this.props.checkLoginStatus} componentDidMount = {this.props.componentDidMount}/>
+            <Header handleHome= {this.handleHome} checkLoginStatus = {this.checkLoginStatus} componentDidMount = {this.componentDidMount} logout = {this.logout}/>
             <Help />
             <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
             </div>
             }
             else if(this.state.contact === true){// contact page
                 content = <div className = "bodystyle">
-            <Header handleHome= {this.handleHome} checkLoginStatus = {this.props.checkLoginStatus} componentDidMount = {this.props.componentDidMount}/>
+            <Header handleHome= {this.handleHome} checkLoginStatus = {this.checkLoginStatus} componentDidMount = {this.componentDidMount} logout = {this.logout}/>
             <Contact />
             <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
             </div>
@@ -100,7 +108,7 @@ class Page extends Component {
                 if(this.state.tweetsent === "success"){
                         content = 
                     <div className = "bodystyle">
-                    <Header handleHome= {this.handleHome} checkLoginStatus = {this.props.checkLoginStatus} componentDidMount = {this.props.componentDidMount}/>
+                    <Header handleHome= {this.handleHome} checkLoginStatus = {this.checkLoginStatus} componentDidMount = {this.componentDidMount} logout = {this.logout}/>
                     <Success handleHome= {this.handleHome}/>
                     <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
                     </div>
@@ -108,7 +116,7 @@ class Page extends Component {
                 else if(this.state.tweetsent === "fail"){
                         content = 
                     <div className = "bodystyle">
-                    <Header handleHome= {this.handleHome} checkLoginStatus = {this.props.checkLoginStatus} componentDidMount = {this.props.componentDidMount}/>
+                    <Header handleHome= {this.handleHome} checkLoginStatus = {this.checkLoginStatus} componentDidMount = {this.componentDidMount} logout = {this.logout}/>
                     <Fail handleHome= {this.handleHome }handleHelp = {this.handleHelp}/>
                     <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
                     </div>
@@ -116,14 +124,14 @@ class Page extends Component {
                 else{
                                             content = 
                     <div className = "bodystyle">
-                    <Header handleHome= {this.handleHome} checkLoginStatus = {this.props.checkLoginStatus} componentDidMount = {this.props.componentDidMount}/>
+                    <Header handleHome= {this.handleHome} checkLoginStatus = {this.checkLoginStatus} componentDidMount = {this.componentDidMount} logout = {this.logout}/>
                     <Body />
                     <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
                     </div>
                 }
             }
         else{//splash
-            content = <Splash handleHelp = {this.handleHelp} handleContact = {this.handleContact} checkLoginStatus = {this.props.checkLoginStatus} componentDidMount = {this.props.componentDidMount}/>;
+            content = <Splash handleHelp = {this.handleHelp} handleContact = {this.handleContact} checkLoginStatus = {this.checkLoginStatus} componentDidMount = {this.componentDidMount} logout = {this.logout}/>;
         }
         
         return (
