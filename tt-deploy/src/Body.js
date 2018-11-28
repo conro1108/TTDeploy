@@ -16,6 +16,7 @@ class Body extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
 
         this.handleCancel =       this.handleCancel.bind(this);
+        this.handleSplitting =       this.handleSplitting.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
         const boxnum = {index: 0};
@@ -24,7 +25,9 @@ class Body extends React.Component {
         this.state = {boxes,
                       Bsplitting: false,
                       splitting: "off",
-                      showModal: false};        
+                      showModal: false};
+        //this.setState([0], "BOX");
+        
     }
     
     handleSubmit(){
@@ -52,6 +55,7 @@ class Body extends React.Component {
         const newBoxes = this.state.boxes;
         newBoxes.push({index: newBoxes.length});
         this.setState({boxes : newBoxes});
+        
         console.log("handleaddbox " + this.state.boxes.length);
     }
     
@@ -72,6 +76,35 @@ class Body extends React.Component {
         console.log("handleremovebox " + this.state.boxes.length);
     }
     
+    handleSplitting () {
+        console.log("Splitting???");
+
+        while(this.state.boxes.length > 0)
+            this.handleremovebox();
+        
+        const newBoxes = this.state.boxes;
+        newBoxes.push({index: newBoxes.length});
+        this.setState({boxes : newBoxes});
+
+        this.handleaddbox();
+        this.handleaddbox();
+        this.handleaddbox();
+        this.handleaddbox();
+        this.handleaddbox();
+        this.handleaddbox();
+
+        this.setState({[1]: "This"});
+        this.setState({[2]: "is"});
+        this.setState({[3]: "not"});
+        this.setState({[4]: "working"});
+        this.setState({[5]: "quite"});
+        this.setState({[6]: "right"});
+
+
+        this.setState({ showModal: false });
+
+    }
+
     handleCancel () {
         this.setState({ Bsplitting: false, splitting:"off" });   
         console.log("cancel: set splitting state " + this.state.splitting);
@@ -100,15 +133,24 @@ class Body extends React.Component {
 
     handleTweetChange(tweetId, value) {
         this.setState({[tweetId]: value});
+            
     }
 
     render() {
+
+        console.log(this.state.boxes.length);
+        this.state.boxes.map(box => (
+            console.log(box.index, this.state[box.index])
+        ));
+
+        
+
         const Tweets = this.state.boxes.map(box => (
             <Tweet 
                 key={box.index}
                 id={box.index}
                 onChange={this.handleTweetChange}
-                value={this.state[box]}    
+                value={this.state[box.index]}
             />
         ));
 
@@ -139,7 +181,7 @@ class Body extends React.Component {
             <div className = "sub-body">
 
             
-            <OurModal showModal={this.state.showModal}  Bsplitting={this.state.Bsplitting}  splitting={this.state.splitting}  handleInputChange = {this.handleInputChange} handleCancel = {this.handleCancel} handleOpenModal = {this.handleOpenModal} handleCloseModal = {this.handleCloseModal}/>
+            <OurModal showModal={this.state.showModal}  Bsplitting={this.state.Bsplitting}  splitting={this.state.splitting}  handleInputChange = {this.handleInputChange} handleCancel = {this.handleCancel} handleOpenModal = {this.handleOpenModal} handleSplitting = {this.handleSplitting} handleCloseModal = {this.handleCloseModal}/>
             
             {Tweets}             
             {button}
