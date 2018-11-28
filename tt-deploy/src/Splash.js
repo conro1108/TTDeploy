@@ -18,7 +18,7 @@ class Splash extends Component {
                         <button type="link" onClick = {this.props.handleContact}> contact us </button>
                     </div>
                     <div className = "splash-3">    
-                    <Route path="/" component={Login} checkLoginStatus = {this.props.checkLoginStatus} componentDidMount = {this.props.componentDidMount} logout = {this.props.logout}/>
+                    <Route path="/" component={Login} />
                     </div>
                     <div className = "splash-4" >    
                         <button type="link" onClick = {this.props.handleHelp}> help </button>
