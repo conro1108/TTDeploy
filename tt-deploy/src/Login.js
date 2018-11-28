@@ -3,12 +3,6 @@ import React, { Component } from 'react';
 class Login extends Component {
     constructor () {
         super()
-        this.state = {
-            loginUrl: '',
-            resourceOwnerKeyCookie: '',
-            resourceOwnerSecretCookie: '',
-            username: null
-        }
               
     }
 
@@ -16,16 +10,16 @@ class Login extends Component {
     render() {
         const isLoggedIn = this.props.isLoggedIn;
         let login_state;
-        console.log(this.state);
+        console.log(this.props);
         if (!isLoggedIn) {
-            if (!this.state.loginUrl) {
+            if (!this.props.loginUrl) {
                 login_state = "Loading...";
             } else {
-                login_state = <a className="button" href={this.state.loginUrl}>Login with Twitter</a>;
+                login_state = <a className="button" href={this.props.loginUrl}>Login with Twitter</a>;
             }
             
         } else {
-            login_state = <> <span> Hello {this.state.username} </span> <a className="button" onClick={this.logout}>Logout</a> </>
+            login_state = <> <span> Hello {this.props.username} </span> <a className="button" onClick={this.logout}>Logout</a> </>
 
         }
 

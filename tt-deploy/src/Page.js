@@ -18,7 +18,11 @@ class Page extends Component {
         this.state = {isLoggedIn: false,
                      help: false,
                      contact: false,
-                     tweetsent: "no"}; 
+                     tweetsent: "no",
+                     loginUrl: '',
+                     resourceOwnerKeyCookie: '',
+                     resourceOwnerSecretCookie: '',
+                     username: null}; 
     this.handleHelp = this.handleHelp.bind(this);
     this.handleContact = this.handleContact.bind(this);
     this.handleHome = this.handleHome.bind(this);
@@ -89,49 +93,51 @@ class Page extends Component {
     
     render() {
         let content;
+        const header = <Header handleHome= {this.handleHome} checkLoginStatus = {this.checkLoginStatus} componentDidMount = {this.componentDidMount} logout = {this.logout} loginUrl = {this.loginUrl} resourceOwnerKeyCookie = {this.resourceOwnerKeyCookie} resourceOwnerSecretCookie = {this.resourceOwnerSecretCookie} username = {this.username}/>;
+        const footer = <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>;
             if(this.state.help === true){//help page
                 content = <div className = "bodystyle">
-            <Header handleHome= {this.handleHome} checkLoginStatus = {this.checkLoginStatus} componentDidMount = {this.componentDidMount} logout = {this.logout}/>
+            {header}
             <Help />
-            <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
-            </div>
+            {footer}
+                </div>
             }
             else if(this.state.contact === true){// contact page
                 content = <div className = "bodystyle">
-            <Header handleHome= {this.handleHome} checkLoginStatus = {this.checkLoginStatus} componentDidMount = {this.componentDidMount} logout = {this.logout}/>
+            {header}
             <Contact />
-            <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
-            </div>
+            {footer}
+                </div>
             }
             else if(1){//normal tweet page
 
                 if(this.state.tweetsent === "success"){
                         content = 
                     <div className = "bodystyle">
-                    <Header handleHome= {this.handleHome} checkLoginStatus = {this.checkLoginStatus} componentDidMount = {this.componentDidMount} logout = {this.logout}/>
+                    {header}
                     <Success handleHome= {this.handleHome}/>
-                    <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
+                    {footer}
                     </div>
                 }
                 else if(this.state.tweetsent === "fail"){
                         content = 
                     <div className = "bodystyle">
-                    <Header handleHome= {this.handleHome} checkLoginStatus = {this.checkLoginStatus} componentDidMount = {this.componentDidMount} logout = {this.logout}/>
+                    {header}
                     <Fail handleHome= {this.handleHome }handleHelp = {this.handleHelp}/>
-                    <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
+                    {footer}
                     </div>
                 }
                 else{
                                             content = 
                     <div className = "bodystyle">
-                    <Header handleHome= {this.handleHome} checkLoginStatus = {this.checkLoginStatus} componentDidMount = {this.componentDidMount} logout = {this.logout}/>
+                    {header}
                     <Body />
-                    <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
+                    {footer}
                     </div>
                 }
             }
         else{//splash
-            content = <Splash handleHelp = {this.handleHelp} handleContact = {this.handleContact} checkLoginStatus = {this.checkLoginStatus} componentDidMount = {this.componentDidMount} logout = {this.logout}/>;
+            content = <Splash handleHelp = {this.handleHelp} handleContact = {this.handleContact} checkLoginStatus = {this.checkLoginStatus} componentDidMount = {this.componentDidMount} logout = {this.logout} loginUrl = {this.loginUrl} resourceOwnerKeyCookie = {this.resourceOwnerKeyCookie} resourceOwnerSecretCookie = {this.resourceOwnerSecretCookie} username = {this.username}/>;
         }
         
         return (
