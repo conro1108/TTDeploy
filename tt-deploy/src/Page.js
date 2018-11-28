@@ -103,7 +103,7 @@ class Page extends Component {
             <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>
             </div>
             }
-            else if(this.state.loggedin === true){//normal tweet page
+            else if(1){//normal tweet page
 
                 if(this.state.tweetsent === "success"){
                         content = 
