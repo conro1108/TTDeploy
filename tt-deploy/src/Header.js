@@ -7,6 +7,7 @@ class Header extends Component {
     constructor(props){
     super(props);}
     render() {
+        console.log(this.props.username + ", " + this.props.resourceOwnerSecretCookie + ", " + this.props.resourceOwnerKeyCookie + ", " + this.props.loginUrl + ", " + this.props.isLoggedIn);
         return (
             <div className = "main-header">
             <div className = "sub-header1">
