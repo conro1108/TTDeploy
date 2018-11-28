@@ -23,9 +23,13 @@ class Page extends Component {
                      resourceOwnerKeyCookie: '',
                      resourceOwnerSecretCookie: '',
                      username: null}; 
+    
     this.handleHelp = this.handleHelp.bind(this);
     this.handleContact = this.handleContact.bind(this);
     this.handleHome = this.handleHome.bind(this);
+    this.logout = this.logout.bind(this);
+    this.checkLoginStatus = this.checkLoginStatus.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
     }
     handleHelp(){
         this.setState({help: true, contact: false});
@@ -93,8 +97,11 @@ class Page extends Component {
     
     render() {
         let content;
-        const header = <Header handleHome= {this.handleHome} checkLoginStatus = {this.checkLoginStatus} componentDidMount = {this.componentDidMount} logout = {this.logout} loginUrl = {this.loginUrl} resourceOwnerKeyCookie = {this.resourceOwnerKeyCookie} resourceOwnerSecretCookie = {this.resourceOwnerSecretCookie} username = {this.username}/>;
+        
+        const header = <Header handleHome= {this.handleHome} checkLoginStatus = {this.checkLoginStatus} componentDidMount = {this.componentDidMount} logout = {this.logout} loginUrl = {this.state.loginUrl} resourceOwnerKeyCookie = {this.state.resourceOwnerKeyCookie} resourceOwnerSecretCookie = {this.state.resourceOwnerSecretCookie} username = {this.state.username}/>;
+        
         const footer = <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>;
+        
             if(this.state.help === true){//help page
                 content = <div className = "bodystyle">
             {header}
@@ -137,7 +144,7 @@ class Page extends Component {
                 }
             }
         else{//splash
-            content = <Splash handleHelp = {this.handleHelp} handleContact = {this.handleContact} checkLoginStatus = {this.checkLoginStatus} componentDidMount = {this.componentDidMount} logout = {this.logout} loginUrl = {this.loginUrl} resourceOwnerKeyCookie = {this.resourceOwnerKeyCookie} resourceOwnerSecretCookie = {this.resourceOwnerSecretCookie} username = {this.username}/>;
+            content = <Splash handleHelp = {this.handleHelp} handleContact = {this.handleContact} checkLoginStatus = {this.checkLoginStatus} componentDidMount = {this.componentDidMount} logout = {this.logout} loginUrl = {this.state.loginUrl} resourceOwnerKeyCookie = {this.state.resourceOwnerKeyCookie} resourceOwnerSecretCookie = {this.state.resourceOwnerSecretCookie} username = {this.state.username}/>;
         }
         
         return (

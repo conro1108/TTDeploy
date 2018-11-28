@@ -7,6 +7,7 @@ class Splash extends Component {
     constructor(props){
     super(props);}
     render() {
+                console.log(this.props.username + ", " + this.props.resourceOwnerSecretCookie + ", " + this.props.resourceOwnerKeyCookie + ", " + this.props.loginUrl + ", " + this.props.isLoggedIn);
         return (
             <div className = "splash-footer">
                 <div className = "splash-header">
@@ -18,7 +19,7 @@ class Splash extends Component {
                         <button type="link" onClick = {this.props.handleContact}> contact us </button>
                     </div>
                     <div className = "splash-3">    
-                    <Route path="/" component={Login} checkLoginStatus = {this.props.checkLoginStatus} componentDidMount = {this.props.componentDidMount} logout = {this.props.logout} loginUrl = {this.props.loginUrl} resourceOwnerKeyCookie = {this.props.resourceOwnerKeyCookie} resourceOwnerSecretCookie = {this.props.resourceOwnerSecretCookie} username = {this.props.username}/>
+                    <Login checkLoginStatus = {this.props.checkLoginStatus} componentDidMount = {this.props.componentDidMount} logout = {this.props.logout} loginUrl = {this.props.loginUrl} resourceOwnerKeyCookie = {this.props.resourceOwnerKeyCookie} resourceOwnerSecretCookie = {this.props.resourceOwnerSecretCookie} username = {this.props.username}/>
                     </div>
                     <div className = "splash-4" >    
                         <button type="link" onClick = {this.props.handleHelp}> help </button>
