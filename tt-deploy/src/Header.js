@@ -7,6 +7,7 @@ class Header extends Component {
     constructor(props){
     super(props);}
     render() {
+        console.log(this.props.username + ", " + this.props.resourceOwnerSecretCookie + ", " + this.props.resourceOwnerKeyCookie + ", " + this.props.loginUrl + ", " + this.props.isLoggedIn);
         return (
             <div className = "main-header">
             <div className = "sub-header1">
@@ -28,7 +29,7 @@ class Header extends Component {
             <div className = "sub-header2">
                 <div className = "h-4">    
                     
-                        <Route path="/" component={Login} />
+                        <Login checkLoginStatus = {this.props.checkLoginStatus} componentDidMount = {this.props.componentDidMount} logout = {this.props.logout} loginUrl = {this.props.loginUrl} resourceOwnerKeyCookie = {this.props.resourceOwnerKeyCookie} resourceOwnerSecretCookie = {this.props.resourceOwnerSecretCookie} username = {this.props.username} isLoggedIn = {this.props.isLoggedIn}/>
                     
                 </div>
             </div>       
