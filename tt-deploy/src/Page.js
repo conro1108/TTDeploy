@@ -44,7 +44,6 @@ class Page extends Component {
     }
     
     logout() {
-        const cookies = this.state.cookies;
         console.log('logging out')
         cookies.remove('access_token_key',  { path: '/', domain : '.threadedtweeter.com' });
         cookies.remove('access_token_secret',  { path: '/', domain : '.threadedtweeter.com' }); 
