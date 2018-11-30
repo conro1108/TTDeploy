@@ -26,8 +26,9 @@ class Body extends React.Component {
         this.state = {boxes,
                       Bsplitting: false,
                       splitting: "off",
-                      tweetsent: "fail",
-                      showModal: false};        
+                      tweetsent: "no",
+                      showModal: false,
+                      response: "ERR"};        
     }
     
     handleSubmit(){
@@ -47,6 +48,15 @@ class Body extends React.Component {
         xhttp.send(JSON.stringify(thread));
         let response = xhttp.response;
         console.log(response);
+        const parsedResponse = JSON.parse(response);
+        console.log(parsedResponse);
+        console.log(parsedResponse.errorMessage);
+        if (!(parsedResponse.errorMessage === null)){
+            this.setState({tweetsent: "fail", response: parsedResponse.errorMessage})
+        }
+        else{
+            this.setState({tweetsent: "success", response: response})
+        }
     }
     
     
@@ -140,10 +150,10 @@ class Body extends React.Component {
 
         
          if(this.state.tweetsent === "success"){
-                        content = <Success handleHome= {this.props.handleHome}/>
+                        content = <Success handleHome= {this.props.handleHome} response = {this.state.response}/>
                 }
                 else if(this.state.tweetsent === "fail"){
-                        content =  <Fail handleHome= {this.props.handleHome }handleHelp = {this.props.handleHelp}/>
+                        content =  <Fail handleHome= {this.props.handleHome }handleHelp = {this.props.handleHelp} response = {this.state.response}/>
 
                 }
                 else{
