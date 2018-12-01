@@ -1,4 +1,6 @@
 import React from 'react';
+import { Timeline } from 'react-twitter-widgets';
+
 
 
 class Fail extends React.Component {
@@ -9,10 +11,20 @@ class Fail extends React.Component {
     
    
     render() {
-        const reff = "https://twitter.com/" + this.props.username + "?ref_src=twsrc%5Etfw";
-        const timeline = <div><a class="twitter-timeline" href={reff}>Tweets by {this.props.username}</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>;
+        const username = this.props.username;
+        const timeline =   <Timeline
+            dataSource={{
+              sourceType: 'profile',
+              screenName: username
+            }}
+            options={{
+              username: username,
+              height: '300',
+              width: '600'
+            }}
+            onLoad={() => console.log('Timeline is loaded!')}
+          />;
         
-        console.log(this.props.username);
         return (
             <div className = "after-tweet">
             <div className = "after-tweet-header">
