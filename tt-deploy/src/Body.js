@@ -11,12 +11,10 @@ class Body extends React.Component {
         
         this.handleaddbox = this.handleaddbox.bind(this);
         this.handleremovebox = this.handleremovebox.bind(this);
-        
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleTweetChange = this.handleTweetChange.bind(this);
-
         this.handleSubmit = this.handleSubmit.bind(this);
-
+        this.handleHome2 = this.handleHome2.bind(this);
         this.handleCancel =       this.handleCancel.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -28,7 +26,7 @@ class Body extends React.Component {
                       splitting: "off",
                       tweetsent: "no",
                       showModal: false,
-                      response: "ERR"};        
+                      response: ""};        
     }
     
     handleSubmit(){
@@ -54,15 +52,15 @@ class Body extends React.Component {
         console.log(parsedResponse.errorMessage);
         console.log(response.body);
         if (!(parsedResponse.errorMessage === undefined)){
-            this.setState({tweetsent: "fail", response: parsedResponse.errorMessage})
+            this.setState({tweetsent: "fail", response: parsedResponse.errorMessage});
         }
         else{
-            this.setState({tweetsent: "success", response: response})
+            this.setState({tweetsent: "success", response: response});
         }
     }
     
     handleHome2(){
-        this.setState({tweetsent: "no"});
+        this.setState({tweetsent: "no", response: ""});
     }
 
     handleaddbox(){
