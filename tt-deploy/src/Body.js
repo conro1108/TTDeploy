@@ -25,7 +25,8 @@ class Body extends React.Component {
         this.state = {boxes,
                       Bsplitting: false,
                       splitting: "off",
-                      showModal: false};
+                      showModal: false,
+                      re_render: false};
         //this.setState([0], "BOX");
         
     }
@@ -94,6 +95,7 @@ class Body extends React.Component {
         this.handleaddbox();
         this.handleaddbox();
 
+        this.setState({[0]: "PRAISE SATAN"});
         this.setState({[1]: "This"});
         this.setState({[2]: "is"});
         this.setState({[3]: "not"});
@@ -103,6 +105,7 @@ class Body extends React.Component {
 
 
         this.setState({ showModal: false });
+        this.setState({ re_render: true });
 
     }
 
@@ -144,7 +147,7 @@ class Body extends React.Component {
             console.log(box.index, this.state[box.index])
         ));
 
-        
+        let content;
 
         const Tweets = this.state.boxes.map(box => (
             <Tweet 
@@ -177,19 +180,37 @@ class Body extends React.Component {
 
         const sendtweet = <div className="b-3"><button type="submit2" onClick = {this.handleSubmit}>submit</button></div>;
 
+        if (!this.state.re_render){
+                    content = 
+                                <div className = "main-body">
+                                <div className = "sub-body">
+
+                                <OurModal showModal={this.state.showModal}  Bsplitting={this.state.Bsplitting}  splitting={this.state.splitting}  handleInputChange = {this.handleInputChange} handleCancel = {this.handleCancel} handleOpenModal = {this.handleOpenModal} handleSplitting = {this.handleSplitting} handleCloseModal = {this.handleCloseModal}/>
+                                {Tweets}             
+                                {button}
+                                {sendtweet}
+
+                                </div>
+                                </div>;
+        }
+
+        else {
+            content = 
+                        <div className = "main-body">
+                        <div className = "sub-body">
+
+                        <OurModal showModal={this.state.showModal}  Bsplitting={this.state.Bsplitting}  splitting={this.state.splitting}  handleInputChange = {this.handleInputChange} handleCancel = {this.handleCancel} handleOpenModal = {this.handleOpenModal} handleSplitting = {this.handleSplitting} handleCloseModal = {this.handleCloseModal}/>
+                        {button}
+                        {sendtweet}
+
+                        </div>
+                        </div>;
+            this.setState({re_render: false});
+        }
+
         return (
-            <div className = "main-body">
-            <div className = "sub-body">
-
-            
-            <OurModal showModal={this.state.showModal}  Bsplitting={this.state.Bsplitting}  splitting={this.state.splitting}  handleInputChange = {this.handleInputChange} handleCancel = {this.handleCancel} handleOpenModal = {this.handleOpenModal} handleSplitting = {this.handleSplitting} handleCloseModal = {this.handleCloseModal}/>
-            
-            
-            {Tweets}             
-            {button}
-            {sendtweet}
-
-            </div>
+            <div>
+            {content}
             </div>
         );
     }
