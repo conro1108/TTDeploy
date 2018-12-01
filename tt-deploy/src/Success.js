@@ -7,7 +7,19 @@ class Success extends React.Component {
     }
    
     render() {
-        
+        const username = this.props.username;
+        const timeline =   <Timeline
+            dataSource={{
+              sourceType: 'profile',
+              screenName: username
+            }}
+            options={{
+              username: username,
+              height: '300',
+              width: '600'
+            }}
+            onLoad={() => console.log('Timeline is loaded!')}
+          />;
             
         return (
             <div className = "after-tweet">
