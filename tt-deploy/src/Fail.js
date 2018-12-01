@@ -9,7 +9,8 @@ class Fail extends React.Component {
     
    
     render() {
-
+        const timeline = <a class="twitter-timeline" href="https://twitter.com/"+{this.props.username}+"?ref_src=twsrc%5Etfw">Tweets by {this.props.username}</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        
         return (
             <div className = "after-tweet">
             <div className = "after-tweet-header">
@@ -22,6 +23,10 @@ class Fail extends React.Component {
             </div>
             <div className = "after-tweet-body">
             {this.props.response}
+            
+            
+            {timeline}
+            
             </div>
             <div className = "after-tweet-footer">
             <button type="link" onClick = {this.props.handleHome2}> post another </button> 
