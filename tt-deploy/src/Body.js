@@ -48,13 +48,12 @@ class Body extends React.Component {
         xhttp.send(JSON.stringify(thread));
         let response = xhttp.response;
         console.log(response);
-        console.log(response.body);
-        console.log(response[1]);
-        console.log(response["body"]);
+        //console.log(response[1]);
         const parsedResponse = JSON.parse(response);
         console.log(parsedResponse);
         console.log(parsedResponse.errorMessage);
-        if (!(parsedResponse.errorMessage === null)){
+        console.log(parsedResponse.body);
+        if (!(parsedResponse.errorMessage === undefined)){
             this.setState({tweetsent: "fail", response: parsedResponse.errorMessage})
         }
         else{
