@@ -71,6 +71,7 @@ class Body extends React.Component {
     
     handleremovebox(){
         const newBoxes = this.state.boxes;
+        this.setState({[this.state.boxes.length - 1] : ''});
         newBoxes.splice((newBoxes.length-1),1);
         this.setState({boxes : newBoxes});
         console.log("handleremovebox " + this.state.boxes.length);
@@ -182,6 +183,7 @@ class Body extends React.Component {
 
             
             <OurModal showModal={this.state.showModal}  Bsplitting={this.state.Bsplitting}  splitting={this.state.splitting}  handleInputChange = {this.handleInputChange} handleCancel = {this.handleCancel} handleOpenModal = {this.handleOpenModal} handleSplitting = {this.handleSplitting} handleCloseModal = {this.handleCloseModal}/>
+            
             
             {Tweets}             
             {button}
