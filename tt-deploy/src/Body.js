@@ -48,6 +48,9 @@ class Body extends React.Component {
         xhttp.send(JSON.stringify(thread));
         let response = xhttp.response;
         console.log(response);
+        console.log(response.body);
+        console.log(response[1]);
+        console.log(response["body"]);
         const parsedResponse = JSON.parse(response);
         console.log(parsedResponse);
         console.log(parsedResponse.errorMessage);
@@ -116,6 +119,7 @@ class Body extends React.Component {
     }
 
     render() {
+        console.log(this.state.tweetsent);
         const Tweets = this.state.boxes.map(box => (
             <Tweet 
                 key={box.index}
