@@ -9,8 +9,11 @@ class Fail extends React.Component {
     
    
     render() {
-        const timeline = <a class="twitter-timeline" href="https://twitter.com/"+{this.props.username}+"?ref_src=twsrc%5Etfw">Tweets by {this.props.username}</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        const reff = "https://twitter.com/" + this.props.username + "?ref_src=twsrc%5Etfw";
+        const timeline = <a class="twitter-timeline" href={reff}>Tweets by {this.props.username}</a>;
+        const timelinescript = <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>;
         
+        console.log(this.props.username);
         return (
             <div className = "after-tweet">
             <div className = "after-tweet-header">
@@ -24,8 +27,8 @@ class Fail extends React.Component {
             <div className = "after-tweet-body">
             {this.props.response}
             
-            
             {timeline}
+            {timelinescript}
             
             </div>
             <div className = "after-tweet-footer">
