@@ -52,7 +52,7 @@ class Body extends React.Component {
         const parsedResponse = JSON.parse(response);
         console.log(parsedResponse);
         console.log(parsedResponse.errorMessage);
-        console.log(parsedResponse.body);
+        console.log(response.body);
         if (!(parsedResponse.errorMessage === undefined)){
             this.setState({tweetsent: "fail", response: parsedResponse.errorMessage})
         }
@@ -61,7 +61,9 @@ class Body extends React.Component {
         }
     }
     
-    
+    handleHome2(){
+        this.setState({tweetsent: "no"});
+    }
 
     handleaddbox(){
         const newBoxes = this.state.boxes;
@@ -153,10 +155,10 @@ class Body extends React.Component {
 
         
          if(this.state.tweetsent === "success"){
-                        content = <Success handleHome= {this.props.handleHome} response = {this.state.response}/>
+                        content = <Success handleHome= {this.props.handleHome2} response = {this.state.response}/>
                 }
                 else if(this.state.tweetsent === "fail"){
-                        content =  <Fail handleHome= {this.props.handleHome }handleHelp = {this.props.handleHelp} response = {this.state.response}/>
+                        content =  <Fail handleHome= {this.props.handleHome2 }handleHelp = {this.props.handleHelp} response = {this.state.response}/>
 
                 }
                 else{

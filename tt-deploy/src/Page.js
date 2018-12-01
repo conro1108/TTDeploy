@@ -37,7 +37,7 @@ class Page extends Component {
         console.log("contact us");
     }
     handleHome(){
-        this.setState({help: false, contact: false, tweetsent: "no"});
+        this.setState({help: false, contact: false});
     }
     
     logout() {
@@ -119,7 +119,7 @@ class Page extends Component {
                 content = 
                     <div className = "bodystyle">
                     {header}
-                    <Body />
+                    <Body handleHome= {this.props.handleHome} handleHelp= {this.props.handleHelp} />
                     {footer}
                     </div>
             }
