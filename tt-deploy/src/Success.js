@@ -18,7 +18,7 @@ class Success extends React.Component {
             </div>
             </div>
             <div className = "after-tweet-body">
-            {this.props.response.body}
+            {this.props.response}
             </div>
             <div className = "after-tweet-footer">
             <button type="link" onClick = {this.props.handleHome2}> post another </button> 

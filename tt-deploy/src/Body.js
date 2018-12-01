@@ -55,12 +55,13 @@ class Body extends React.Component {
             this.setState({tweetsent: "fail", response: parsedResponse.errorMessage});
         }
         else{
-            this.setState({tweetsent: "success", response: response});
+            this.setState({tweetsent: "success", response: parsedResponse.body});
         }
     }
     
     handleHome2(){
         this.setState({tweetsent: "no", response: ""});
+        //TODO reinitalize boxes to whatever one blank box is
     }
 
     handleaddbox(){
