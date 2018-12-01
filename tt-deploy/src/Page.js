@@ -119,7 +119,7 @@ class Page extends Component {
                 content = 
                     <div className = "bodystyle">
                     {header}
-                    <Body handleHome= {this.props.handleHome} handleHelp= {this.props.handleHelp} />
+                    <Body handleHome= {this.handleHome} handleHelp= {this.handleHelp} />
                     {footer}
                     </div>
             }

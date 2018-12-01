@@ -155,10 +155,10 @@ class Body extends React.Component {
 
         
          if(this.state.tweetsent === "success"){
-                        content = <Success handleHome= {this.props.handleHome2} response = {this.state.response}/>
+                        content = <Success handleHome2= {this.handleHome2} response = {this.state.response}/>
                 }
                 else if(this.state.tweetsent === "fail"){
-                        content =  <Fail handleHome= {this.props.handleHome2 }handleHelp = {this.props.handleHelp} response = {this.state.response}/>
+                        content =  <Fail handleHome2= {this.handleHome2 }handleHelp = {this.props.handleHelp} response = {this.state.response}/>
 
                 }
                 else{
