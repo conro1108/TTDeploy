@@ -2,6 +2,8 @@ import React from 'react';
 import Tweet from './Tweet';
 import OurModal from './OurModal';
 import axios from "axios";
+import Success from './Success';
+import Fail from './Fail';
 
 class Body extends React.Component {
     constructor(props){
@@ -9,12 +11,10 @@ class Body extends React.Component {
         
         this.handleaddbox = this.handleaddbox.bind(this);
         this.handleremovebox = this.handleremovebox.bind(this);
-        
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleTweetChange = this.handleTweetChange.bind(this);
-
         this.handleSubmit = this.handleSubmit.bind(this);
-
+        this.handleHome2 = this.handleHome2.bind(this);
         this.handleCancel =       this.handleCancel.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -24,7 +24,9 @@ class Body extends React.Component {
         this.state = {boxes,
                       Bsplitting: false,
                       splitting: "off",
-                      showModal: false};        
+                      tweetsent: "no",
+                      showModal: false,
+                      response: ""};        
     }
     
     handleSubmit(){
@@ -44,8 +46,22 @@ class Body extends React.Component {
         xhttp.send(JSON.stringify(thread));
         let response = xhttp.response;
         console.log(response);
-
-
+        //console.log(response[1]);
+        const parsedResponse = JSON.parse(response);
+        console.log(parsedResponse);
+        console.log(parsedResponse.errorMessage);
+        console.log(response.body);
+        if (!(parsedResponse.errorMessage === undefined)){
+            this.setState({tweetsent: "fail", response: parsedResponse.errorMessage});
+        }
+        else{
+            this.setState({tweetsent: "success", response: parsedResponse.body});
+        }
+    }
+    
+    handleHome2(){
+        this.setState({tweetsent: "no", response: ""});
+        //TODO reinitalize boxes to whatever one blank box is
     }
 
     handleaddbox(){
@@ -103,6 +119,7 @@ class Body extends React.Component {
     }
 
     render() {
+        console.log(this.state.tweetsent);
         const Tweets = this.state.boxes.map(box => (
             <Tweet 
                 key={box.index}
@@ -115,6 +132,7 @@ class Body extends React.Component {
         const boxes = this.state.boxes;
         const boxnum = boxes.length;
         let button;
+        let content;
         if(boxnum === 1){
             button = <div className = "centeronebutton">
                 <button className = "circlebutton" onClick = {this.handleaddbox}>
@@ -134,19 +152,34 @@ class Body extends React.Component {
 
         const sendtweet = <div className="b-3"><button type="submit2" onClick = {this.handleSubmit}>submit</button></div>;
 
+        
+         if(this.state.tweetsent === "success"){
+                        content = <Success handleHome2= {this.handleHome2} response = {this.state.response} username = {this.props.username}/>
+                }
+                else if(this.state.tweetsent === "fail"){
+                        content =  <Fail handleHome2= {this.handleHome2 }handleHelp = {this.props.handleHelp} response = {this.state.response} username = {this.props.username}/>
+
+                }
+                else{
+                        content = 
+                                    <div className = "main-body">
+                                    <div className = "sub-body">
+
+                                    <OurModal showModal={this.state.showModal}  Bsplitting={this.state.Bsplitting}  splitting={this.state.splitting}  handleInputChange = {this.handleInputChange} handleCancel = {this.handleCancel} handleOpenModal = {this.handleOpenModal} handleCloseModal = {this.handleCloseModal}/>
+
+                                    {Tweets}             
+                                    {button}
+                                    {sendtweet}
+
+                                    </div>
+                                    </div>
+                }
+        
+        
         return (
-            <div className = "main-body">
-            <div className = "sub-body">
-
-            
-            <OurModal showModal={this.state.showModal}  Bsplitting={this.state.Bsplitting}  splitting={this.state.splitting}  handleInputChange = {this.handleInputChange} handleCancel = {this.handleCancel} handleOpenModal = {this.handleOpenModal} handleCloseModal = {this.handleCloseModal}/>
-            
-            {Tweets}             
-            {button}
-            {sendtweet}
-
-            </div>
-            </div>
+                <div>
+                {content}
+                </div>
         );
     }
 }

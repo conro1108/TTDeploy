@@ -5,8 +5,6 @@ import Footer from './Footer';
 import Splash from './Splash';
 import Contact from './Contact';
 import Help from './Help';
-import Success from './Success';
-import Fail from './Fail';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 
@@ -18,7 +16,6 @@ class Page extends Component {
         this.state = {isLoggedIn: false,
                      help: false,
                      contact: false,
-                     tweetsent: "no",
                      loginUrl: '',
                      resourceOwnerKeyCookie: '',
                      resourceOwnerSecretCookie: '',
@@ -40,7 +37,7 @@ class Page extends Component {
         console.log("contact us");
     }
     handleHome(){
-        this.setState({help: false, contact: false, tweetsent: "no"});
+        this.setState({help: false, contact: false});
     }
     
     logout() {
@@ -118,32 +115,13 @@ class Page extends Component {
             {footer}
                 </div>
             }
-            else if(this.state.isLoggedIn === true ){//normal tweet page
-
-                if(this.state.tweetsent === "success"){
-                        content = 
+            else if(this.state.isLoggedIn === true){//normal tweet page
+                content = 
                     <div className = "bodystyle">
                     {header}
-                    <Success handleHome= {this.handleHome}/>
+                    <Body handleHome= {this.handleHome} handleHelp= {this.handleHelp} username = {this.state.username}/>
                     {footer}
                     </div>
-                }
-                else if(this.state.tweetsent === "fail"){
-                        content = 
-                    <div className = "bodystyle">
-                    {header}
-                    <Fail handleHome= {this.handleHome }handleHelp = {this.handleHelp}/>
-                    {footer}
-                    </div>
-                }
-                else{
-                                            content = 
-                    <div className = "bodystyle">
-                    {header}
-                    <Body />
-                    {footer}
-                    </div>
-                }
             }
         else{//splash
             content = <Splash handleHelp = {this.handleHelp} handleContact = {this.handleContact} checkLoginStatus = {this.checkLoginStatus} componentDidMount = {this.componentDidMount} logout = {this.logout} loginUrl = {this.state.loginUrl} resourceOwnerKeyCookie = {this.state.resourceOwnerKeyCookie} resourceOwnerSecretCookie = {this.state.resourceOwnerSecretCookie} username = {this.state.username} isLoggedIn = {this.state.isLoggedIn}/>;
