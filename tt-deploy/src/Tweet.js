@@ -19,15 +19,18 @@ class Tweet extends React.Component{
     }
     fileHandler(event)  {
         this.setState({file: event.target.files[0]});
-        let upload = event.target.files[0];
+        const upload = event.target.files[0];
         console.log(upload); 
         let postData = this.props.uploadData;
         postData = Object.assign({'file': upload}, postData);
-        axios.post(this.props.uploadUrl, postData).then(
+        console.log(postData);
+        this.props.onUpload("media"+this.props.id, upload);
+
+        /*axios.post(this.props.uploadUrl, postData).then(
             response => {
                 this.props.onUpload("media"+this.props.id, response.data.location)
             }
-        )
+        )*/
     }
 
     render(){
