@@ -26,16 +26,29 @@ class Body extends React.Component {
                       splitting: "off",
                       tweetsent: "no",
                       showModal: false,
-                      response: ""};        
+                      response: "",
+                      uploadUrl: "",
+                      uploadData:{}};        
     }
     
+    componentDidMount() {
+        axios.get("https://api.threadedtweeter.com/v2/upload").then(
+            response => {
+                this.setState({
+                    uploadUrl: response.data.url,
+                    uploadData: response.data.fields
+                });
+            }
+        )
+    }
+
     handleSubmit(){
         let numTweets = this.state.boxes.length;
         let tweets = [];
         for(let i = 0; i < numTweets; i++) {
             tweets.push({
                 "STATUS": this.state["tweet"+i],
-                "MEDIA": []
+                "MEDIA": [this.state["media"+i]]
             })
         }
         let thread = {"TWEETS" : tweets};
@@ -115,11 +128,11 @@ class Body extends React.Component {
     }
 
     handleTweetChange(tweetId, value) {
-        this.setState({["tweet"+tweetId]: value});
+        this.setState({[tweetId]: value});
     }
 
     handleFileUpload(mediaId, value) {
-        //this.setState({})
+        this.setState({[mediaId]: value})
     }
 
     render() {
@@ -129,7 +142,10 @@ class Body extends React.Component {
                 key={box.index}
                 id={box.index}
                 onChange={this.handleTweetChange}
-                value={this.state[box]}    
+                value={this.state[box]}
+                uploadUrl={this.state.uploadUrl}
+                uploadData={this.state.uploadData}
+                onUpload={this.handleFileUpload}    
             />
         ));
 

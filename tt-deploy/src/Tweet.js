@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 
 class Tweet extends React.Component{
@@ -14,12 +15,20 @@ class Tweet extends React.Component{
     handleChange(event){
         const text = event.target.value;
         this.setState({value: text});
-        this.props.onChange(this.props.id, text);
+        this.props.onChange("tweet"+this.props.id, text);
     }
     fileHandler(event)  {
-        this.setState({file: event.target.files[0]})
-        console.log(this.state.file) 
-        //axios.post('somewhere.com/file-upload', this.state.selectedFile)
+        this.setState({file: event.target.files[0]});
+        //console.log(this.state.file);
+        console.log(event.target.files[0]); 
+        axios.post(this.props.uploadUrl, {
+            data: this.props.uploadData,
+            files: {'file': event.target.files[0]}
+        }).then(
+            response => {
+                this.props.onUpload("media"+this.props.id, response.data.location)
+            }
+        )
     }
 
     render(){
