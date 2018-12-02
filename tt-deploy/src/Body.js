@@ -18,6 +18,7 @@ class Body extends React.Component {
         this.handleCancel =       this.handleCancel.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.handleFileUpload = this.handleFileUpload.bind(this);
         const boxnum = {index: 0};
         const boxes = [];
         boxes.push(boxnum);
