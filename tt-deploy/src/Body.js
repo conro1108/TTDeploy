@@ -94,27 +94,73 @@ class Body extends React.Component {
     handleSplitting () {
         console.log("Splitting???");
 
+        let full_text = "";
+
+        //console.log("enter loop");
+
+        for (let i = 0; i < this.state.boxes.length; i++)
+        {
+            full_text += this.state[i] + " ";
+        }
+
+
         while(this.state.boxes.length > 0)
+        {
+            //console.log("adding text");
+            
+
             this.handleremovebox();
-        
+        }
+
+        //console.log("done removing boxes");
+        //console.log(this.state.boxes.length);
+
         const newBoxes = this.state.boxes;
         newBoxes.push({index: newBoxes.length});
         this.setState({boxes : newBoxes});
 
-        this.handleaddbox();
-        this.handleaddbox();
-        this.handleaddbox();
-        this.handleaddbox();
-        this.handleaddbox();
-        this.handleaddbox();
+        //console.log(this.state.boxes.length);
 
-        this.setState({[0]: "PRAISE SATAN"});
-        this.setState({[1]: "This"});
-        this.setState({[2]: "is"});
-        this.setState({[3]: "not"});
-        this.setState({[4]: "working"});
-        this.setState({[5]: "quite"});
-        this.setState({[6]: "right"});
+        const splitAt = index => x => [x.slice(0, index), x.slice(index + 1)];
+
+        if (full_text.length === 0)
+            this.setState({[0]: ''});
+
+        else
+        {
+            if (full_text.length > 280)
+            {
+                let search_index = 279;
+                let text_collection = [];
+                while (full_text[search_index] != ' ')
+                    search_index--;
+                
+                let split_text = splitAt(search_index)(full_text);
+                this.setState({[0]: split_text[0]});
+
+                while(split_text[1].length > 280)
+                {
+                    search_index = 279;
+                    while (split_text[1][search_index] != ' ')
+                        search_index--;
+                    split_text = splitAt(search_index)(split_text[1]);
+                    text_collection.push(split_text[0]);
+                }
+
+                text_collection.push(split_text[1]);
+
+                for (let j = 0; j < text_collection.length; j++)
+                {
+                    this.handleaddbox();
+                    this.setState({[j+1]: text_collection[j]});
+                }
+                
+
+            }
+
+            else
+                this.setState({[0]: full_text});
+        }
 
 
         this.setState({ showModal: false });
@@ -195,13 +241,29 @@ class Body extends React.Component {
                         content =  <Fail handleHome2= {this.handleHome2 }handleHelp = {this.props.handleHelp} response = {this.state.response} username = {this.props.username}/>
 
                 }
+
+                else if(this.state.showModal){
+                    content = 
+                                <div className = "main-body">
+                                <div className = "sub-body">
+        
+                                <OurModal showModal={this.state.showModal}  Bsplitting={this.state.Bsplitting}  splitting={this.state.splitting}  handleInputChange = {this.handleInputChange} handleCancel = {this.handleCancel} handleOpenModal = {this.handleOpenModal} handleSplitting = {this.handleSplitting} handleCloseModal = {this.handleCloseModal}/>
+                                
+                                {button}
+                                {sendtweet}
+        
+                                </div>
+                                </div>
+                    
+                }
+
                 else{
                         content = 
                                     <div className = "main-body">
                                     <div className = "sub-body">
 
-                                    <OurModal showModal={this.state.showModal}  Bsplitting={this.state.Bsplitting}  splitting={this.state.splitting}  handleInputChange = {this.handleInputChange} handleCancel = {this.handleCancel} handleOpenModal = {this.handleOpenModal} handleCloseModal = {this.handleCloseModal}/>
-
+                                    <OurModal showModal={this.state.showModal}  Bsplitting={this.state.Bsplitting}  splitting={this.state.splitting}  handleInputChange = {this.handleInputChange} handleCancel = {this.handleCancel} handleOpenModal = {this.handleOpenModal} handleSplitting = {this.handleSplitting} handleCloseModal = {this.handleCloseModal}/>
+                                    
                                     {Tweets}             
                                     {button}
                                     {sendtweet}
