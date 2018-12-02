@@ -34,7 +34,7 @@ class Body extends React.Component {
         let tweets = [];
         for(let i = 0; i < numTweets; i++) {
             tweets.push({
-                "STATUS": this.state[i],
+                "STATUS": this.state["tweet"+i],
                 "MEDIA": []
             })
         }
@@ -115,7 +115,11 @@ class Body extends React.Component {
     }
 
     handleTweetChange(tweetId, value) {
-        this.setState({[tweetId]: value});
+        this.setState({["tweet"+tweetId]: value});
+    }
+
+    handleFileUpload(mediaId, value) {
+        //this.setState({})
     }
 
     render() {
