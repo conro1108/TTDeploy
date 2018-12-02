@@ -1,16 +1,30 @@
 import React from 'react';
+import { Timeline } from 'react-twitter-widgets';
+
 
 
 class Fail extends React.Component {
     constructor(props){
         super(props);
-        this.state = {//tweet
- };        
+       
     }
     
    
     render() {
-       
+        const username = this.props.username;
+        const timeline =   <Timeline
+            dataSource={{
+              sourceType: 'profile',
+              screenName: username
+            }}
+            options={{
+              username: username,
+              height: '300',
+              width: '600'
+            }}
+            onLoad={() => console.log('Timeline is loaded!')}
+          />;
+        
         return (
             <div className = "after-tweet">
             <div className = "after-tweet-header">
@@ -22,10 +36,11 @@ class Fail extends React.Component {
             </div>
             </div>
             <div className = "after-tweet-body">
-            TODO:PUT TWEET
+            {this.props.response}
+            {timeline}
             </div>
             <div className = "after-tweet-footer">
-            <button type="link" onClick = {this.props.handleHome}> post another </button> 
+            <button type="link" onClick = {this.props.handleHome2}> post another </button> 
             </div>
             <button type="button" className="notbutton" onClick = {this.props.handleHelp}>what happened?</button>
             </div>
