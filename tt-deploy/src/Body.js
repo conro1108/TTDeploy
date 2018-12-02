@@ -25,8 +25,7 @@ class Body extends React.Component {
         this.state = {boxes,
                       Bsplitting: false,
                       splitting: "off",
-                      showModal: false,
-                      re_render: false};
+                      showModal: false};
         //this.setState([0], "BOX");
         
     }
