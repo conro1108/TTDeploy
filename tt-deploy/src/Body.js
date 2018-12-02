@@ -105,7 +105,7 @@ class Body extends React.Component {
 
 
         this.setState({ showModal: false });
-        this.setState({ re_render: true });
+        //this.setState({ re_render: true });
 
     }
 
@@ -180,7 +180,7 @@ class Body extends React.Component {
 
         const sendtweet = <div className="b-3"><button type="submit2" onClick = {this.handleSubmit}>submit</button></div>;
 
-        if (!this.state.re_render){
+        if (!this.state.showModal){
                     content = 
                                 <div className = "main-body">
                                 <div className = "sub-body">
@@ -204,8 +204,8 @@ class Body extends React.Component {
                         {sendtweet}
 
                         </div>
-                        </div>;
-            this.setState({re_render: false});
+                        </div>
+            
         }
 
         return (
