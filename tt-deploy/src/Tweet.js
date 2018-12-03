@@ -37,6 +37,9 @@ class Tweet extends React.Component{
         for(const field in postData){
             formdata.append(field, postData[field])
         }
+        for (var pair of formdata.entries()) {
+            console.log(pair[0]+ ', ' + pair[1]); 
+        }
         //this.props.onUpload("media"+this.props.id, upload);
         var xhr = new XMLHttpRequest();
         xhr.open("POST", this.props.uploadUrl);
