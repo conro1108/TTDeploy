@@ -15,6 +15,7 @@ class Body extends React.Component {
         this.handleTweetChange = this.handleTweetChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleHome2 = this.handleHome2.bind(this);
+        this.handleHome3 = this.handleHome3.bind(this);
         this.handleCancel =       this.handleCancel.bind(this);
         this.handleSplitting =       this.handleSplitting.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
