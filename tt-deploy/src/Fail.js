@@ -40,7 +40,7 @@ class Fail extends React.Component {
             {timeline}
             </div>
             <div className = "after-tweet-footer">
-            <button type="link" onClick = {this.props.handleHome2}> post another </button> 
+            <button type="link" onClick = {this.props.handleHome3}> try again </button> 
             </div>
             <button type="button" className="notbutton" onClick = {this.props.handleHelp}>what happened?</button>
             </div>

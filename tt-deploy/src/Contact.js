@@ -12,7 +12,7 @@ class Contact extends Component {
 
             We are creating a tool called "Threaded Tweeter" which will serve as a tool for computer power users to quickly and easily compose and post threaded tweets. The core product will be a command line tool that allows a user to compose a tweet thread in their preferred text editor, and post to twitter from the comfort of their terminal emulator.
             <div className = "help-subheader">
-            https://github.com/peakay/ThreadedTweeter
+            https://github.com/conro1108/TTDeploy
             </div>
             <div className = "help-subheader">
 
