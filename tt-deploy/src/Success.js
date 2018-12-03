@@ -11,10 +11,10 @@ class Success extends React.Component {
         const timeline =   <Timeline
             dataSource={{
               sourceType: 'profile',
-              screenName: "BarackObama"
+              screenName: username
             }}
             options={{
-              username: "BarackObama",
+              username: username,
               height: '300',
               width: '600'
             }}
