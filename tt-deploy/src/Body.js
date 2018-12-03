@@ -99,7 +99,7 @@ class Body extends React.Component {
     
     handleremovebox(){
         const newBoxes = this.state.boxes;
-        this.setState({[this.state.boxes.length - 1] : ''});
+        this.setState({['tweet'+(this.state.boxes.length - 1)] : ''});
         newBoxes.splice((newBoxes.length-1),1);
         this.setState({boxes : newBoxes});
         console.log("handleremovebox " + this.state.boxes.length);
