@@ -32,7 +32,7 @@ class Tweet extends React.Component{
         console.log(upload); 
         let postData = this.props.uploadData;
         postData = Object.assign({'file': event.target.files[0]}, postData);
-        postData['key'] = postData['key'].slice(0,-12) + upload.name; 
+        postData['key'] = postData['key'].slice(0,-11) + upload.name; 
         console.log(postData);
         //this.props.onUpload("media"+this.props.id, upload);
 
