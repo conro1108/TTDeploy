@@ -39,6 +39,9 @@ class Tweet extends React.Component{
             response => {
                 console.log(response);
                 this.props.onUpload("media"+this.props.id, response.data.location);
+            }, 
+            error => {
+                console.log(error);
             }
         )
     }
