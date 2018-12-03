@@ -11,7 +11,7 @@ class Header extends Component {
         return (
             <div className = "main-header">
             <div className = "sub-header1">
-                <div className = "h-1">
+                <div className = "h-1" onClick = {this.props.handleHome}>
                     <div>
                         Tweet 
                     </div>
@@ -19,10 +19,10 @@ class Header extends Component {
                         Together
                     </div>
                 </div>
-                <div className = "h-2">
-            <img width = "70px"
-            src={require('./logo.JPG')}
-            alt='logo' />            
+            <div className = "h-2" onClick = {this.props.handleHome}>
+                <img width = "70px"
+                src={require('./logo.JPG')}
+                alt='logo' />            
             </div>
                 <div className = "h-3" onClick = {this.props.handleHome}>Threaded Tweeter</div>
             </div>

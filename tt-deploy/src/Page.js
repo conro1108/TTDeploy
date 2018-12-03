@@ -99,7 +99,7 @@ class Page extends Component {
         
         const header = <Header handleHome= {this.handleHome} checkLoginStatus = {this.checkLoginStatus} componentDidMount = {this.componentDidMount} logout = {this.logout} loginUrl = {this.state.loginUrl} resourceOwnerKeyCookie = {this.state.resourceOwnerKeyCookie} resourceOwnerSecretCookie = {this.state.resourceOwnerSecretCookie} username = {this.state.username} isLoggedIn = {this.state.isLoggedIn}/>;
         
-        const footer = <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact}/>;
+        const footer = <Footer handleHelp = {this.handleHelp} handleContact = {this.handleContact} handleHome= {this.handleHome}/>;
         
             if(this.state.help === true){//help page
                 content = <div className = "bodystyle">
@@ -115,11 +115,11 @@ class Page extends Component {
             {footer}
                 </div>
             }
-            else if(this.state.isLoggedIn === true){//normal tweet page
+            else if(this.state.isLoggedIn === false){//normal tweet page
                 content = 
                     <div className = "bodystyle">
                     {header}
-                    <Body handleHome= {this.handleHome} handleHelp= {this.handleHelp} username = {this.state.username}/>
+                    <Body handleHelp= {this.handleHelp} username = {this.state.username}/>
                     {footer}
                     </div>
             }

@@ -78,6 +78,11 @@ class Body extends React.Component {
         this.setState({tweetsent: "no", response: ""});
         //TODO reinitalize boxes to whatever one blank box is
     }
+    
+        handleHome3(){
+        this.setState({tweetsent: "no", response: ""});
+        //DO NOT reinitalize boxes
+    }
 
     handleaddbox(){
         const newBoxes = this.state.boxes;
@@ -259,13 +264,12 @@ class Body extends React.Component {
                         content = <Success handleHome2= {this.handleHome2} response = {this.state.response} username = {this.props.username}/>
                 }
                 else if(this.state.tweetsent === "fail"){
-                        content =  <Fail handleHome2= {this.handleHome2} handleHelp = {this.props.handleHelp} response = {this.state.response} username = {this.props.username}/>
+                        content =  <Fail handleHome3= {this.handleHome3} handleHelp = {this.props.handleHelp} response = {this.state.response} username = {this.props.username}/>
 
                 }
 
                 else if(this.state.showModal){
                     content = 
-                                <div className = "main-body">
                                 <div className = "sub-body">
         
                                 <OurModal showModal={this.state.showModal}  Bsplitting={this.state.Bsplitting}  splitting={this.state.splitting}  handleInputChange = {this.handleInputChange} handleCancel = {this.handleCancel} handleOpenModal = {this.handleOpenModal} handleSplitting = {this.handleSplitting} handleCloseModal = {this.handleCloseModal}/>
@@ -274,13 +278,11 @@ class Body extends React.Component {
                                 {sendtweet}
         
                                 </div>
-                                </div>
                     
                 }
 
                 else{
                         content = 
-                                    <div className = "main-body">
                                     <div className = "sub-body">
 
                                     <OurModal showModal={this.state.showModal}  Bsplitting={this.state.Bsplitting}  splitting={this.state.splitting}  handleInputChange = {this.handleInputChange} handleCancel = {this.handleCancel} handleOpenModal = {this.handleOpenModal} handleSplitting = {this.handleSplitting} handleCloseModal = {this.handleCloseModal}/>
@@ -290,12 +292,11 @@ class Body extends React.Component {
                                     {sendtweet}
 
                                     </div>
-                                    </div>
                 }
         
         
         return (
-                <div>
+                <div className = "main-body">
                 {content}
                 </div>
         );

@@ -11,10 +11,10 @@ class Footer extends Component {
             <div className = "h-1">
             <button type="link" onClick = {this.props.handleHelp}> help </button>
             </div>
-            <div className = "h-2">
-            <img width = "55px"
-            src={require('./logo2.JPG')}
-            alt='logo2' />
+            <div className = "h-2" onClick = {this.props.handleHome}>
+                <img width = "55px"
+                src={require('./logo2.JPG')}
+                alt='logo2' />
             </div>
             <div className = "h-5">  
             <button type="link" onClick = {this.props.handleContact}> contact us </button>
