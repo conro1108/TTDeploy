@@ -75,7 +75,7 @@ class Body extends React.Component {
         //TODO reinitalize boxes to whatever one blank box is
     }
     
-        handleHome3(){
+    handleHome3(){
         this.setState({tweetsent: "no", response: ""});
         //DO NOT reinitalize boxes
     }

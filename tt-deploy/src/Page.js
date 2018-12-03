@@ -115,7 +115,7 @@ class Page extends Component {
             {footer}
                 </div>
             }
-            else if(this.state.isLoggedIn === false){//normal tweet page
+            else if(this.state.isLoggedIn === true){//normal tweet page
                 content = 
                     <div className = "bodystyle">
                     {header}
