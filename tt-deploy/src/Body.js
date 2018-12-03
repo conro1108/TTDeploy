@@ -19,6 +19,7 @@ class Body extends React.Component {
         this.handleSplitting =       this.handleSplitting.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.handleFileUpload = this.handleFileUpload.bind(this);
         const boxnum = {index: 0};
         const boxes = [];
         boxes.push(boxnum);
@@ -27,16 +28,29 @@ class Body extends React.Component {
                       splitting: "off",
                       tweetsent: "no",
                       showModal: false,
-                      response: ""};        
+                      response: "",
+                      uploadUrl: "",
+                      uploadData:{}};        
     }
     
+    componentDidMount() {
+        axios.get("https://api.threadedtweeter.com/v2/upload").then(
+            response => {
+                this.setState({
+                    uploadUrl: response.data.url,
+                    uploadData: response.data.fields
+                });
+            }
+        )
+    }
+
     handleSubmit(){
         let numTweets = this.state.boxes.length;
         let tweets = [];
         for(let i = 0; i < numTweets; i++) {
             tweets.push({
-                "STATUS": this.state[i],
-                "MEDIA": []
+                "STATUS": ("tweet"+i in this.state) ? this.state["tweet"+i] : "",
+                "MEDIA": ("media"+i in this.state) ? [this.state["media"+i]] : []
             })
         }
         let thread = {"TWEETS" : tweets};
@@ -199,6 +213,10 @@ class Body extends React.Component {
             
     }
 
+    handleFileUpload(mediaId, value) {
+        this.setState({[mediaId]: value})
+    }
+
     render() {
         console.log(this.state.tweetsent);
         const Tweets = this.state.boxes.map(box => (
@@ -207,6 +225,9 @@ class Body extends React.Component {
                 id={box.index}
                 onChange={this.handleTweetChange}
                 value={this.state[box.index]}
+                uploadUrl={this.state.uploadUrl}
+                uploadData={this.state.uploadData}
+                onUpload={this.handleFileUpload}    
             />
         ));
 

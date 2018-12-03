@@ -32,7 +32,7 @@ class OurModal extends React.Component {
             <div className="b-1">
                 Auto splitting: off
                     </div>;
-                     console.log("splitting displays off");
+                    console.log("splitting displays off");
         }
         else{ split =
             <div className="b-1">
