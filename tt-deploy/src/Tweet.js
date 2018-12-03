@@ -1,11 +1,21 @@
 import React from 'react';
+import axios from 'axios';
 
 
 class Tweet extends React.Component{
     constructor(props){
         super(props);
+        
+        let init_val = ''
+
+        if (this.props.value === undefined) {
+            init_val = '';
+        }
+        else{
+            init_val = this.props.value;
+        }
         this.state = {
-            value:'',
+            value:init_val,
             file:''
         };
         this.handleChange =        this.handleChange.bind(this);
@@ -14,16 +24,49 @@ class Tweet extends React.Component{
     handleChange(event){
         const text = event.target.value;
         this.setState({value: text});
-        this.props.onChange(this.props.id, text);
+        this.props.onChange("tweet"+this.props.id, text);
     }
     fileHandler(event)  {
-        this.setState({file: event.target.files[0]})
-        console.log(this.state.file) 
-        //axios.post('somewhere.com/file-upload', this.state.selectedFile)
+        this.setState({file: event.target.files[0]});
+        const upload = event.target.files[0];
+        console.log(upload); 
+        let postData = this.props.uploadData;
+        //postData = Object.assign({'file': event.target.files[0]}, postData);
+        console.log(postData);
+        let formdata = new FormData();
+        for(const field in postData){
+            formdata.append(field, postData[field])
+        }
+        formdata.append("file", event.target.files[0]); 
+        /*
+        for (var pair of formdata.entries()) {
+            console.log(pair[0]+ ', ' + pair[1]); 
+        }
+        */
+        //this.props.onUpload("media"+this.props.id, upload);
+        /*
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", this.props.uploadUrl);
+        xhr.send(formdata);
+        */
+        //const header = {'Content-Type': 'multipart/form-data'};
+        
+        axios.post(this.props.uploadUrl, formdata).then(
+            response => {
+                console.log(response);
+                
+                this.props.onUpload("media"+this.props.id, this.props.uploadUrl+postData['key'].slice(0,-11)+upload.name);
+            }, 
+            error => {
+                console.log(error);
+            }
+        )
+        
     }
 
     render(){
         let charlimit;
+        console.log(this.state.value)
         if(this.state.value.length <= 280){
             charlimit = <div className="b-5">
                         {this.state.value.length}/280 

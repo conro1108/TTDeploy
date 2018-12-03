@@ -32,7 +32,7 @@ class Success extends React.Component {
             </div>
             </div>
             <div className = "after-tweet-body">
-            
+            {timeline}
             </div>
             <div className = "after-tweet-footer">
             <button type="link" onClick = {this.props.handleHome2}> post another </button> 
