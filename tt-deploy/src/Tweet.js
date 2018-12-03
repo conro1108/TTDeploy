@@ -5,8 +5,17 @@ import axios from 'axios';
 class Tweet extends React.Component{
     constructor(props){
         super(props);
+        
+        let init_val = ''
+
+        if (this.props.value === undefined) {
+            init_val = '';
+        }
+        else{
+            init_val = this.props.value;
+        }
         this.state = {
-            value:'',
+            value:init_val,
             file:''
         };
         this.handleChange =        this.handleChange.bind(this);
@@ -36,6 +45,7 @@ class Tweet extends React.Component{
 
     render(){
         let charlimit;
+        console.log(this.state.value)
         if(this.state.value.length <= 280){
             charlimit = <div className="b-5">
                         {this.state.value.length}/280 

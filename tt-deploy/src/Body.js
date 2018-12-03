@@ -16,6 +16,7 @@ class Body extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleHome2 = this.handleHome2.bind(this);
         this.handleCancel =       this.handleCancel.bind(this);
+        this.handleSplitting =       this.handleSplitting.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
         this.handleFileUpload = this.handleFileUpload.bind(this);
@@ -82,6 +83,7 @@ class Body extends React.Component {
         const newBoxes = this.state.boxes;
         newBoxes.push({index: newBoxes.length});
         this.setState({boxes : newBoxes});
+        
         console.log("handleaddbox " + this.state.boxes.length);
     }
     
@@ -97,11 +99,89 @@ class Body extends React.Component {
     
     handleremovebox(){
         const newBoxes = this.state.boxes;
+        this.setState({[this.state.boxes.length - 1] : ''});
         newBoxes.splice((newBoxes.length-1),1);
         this.setState({boxes : newBoxes});
         console.log("handleremovebox " + this.state.boxes.length);
     }
     
+    handleSplitting () {
+        console.log("Splitting???");
+
+        let full_text = "";
+
+        //console.log("enter loop");
+
+        for (let i = 0; i < this.state.boxes.length; i++)
+        {
+            full_text += this.state[i] + " ";
+        }
+
+
+        while(this.state.boxes.length > 0)
+        {
+            //console.log("adding text");
+            
+
+            this.handleremovebox();
+        }
+
+        //console.log("done removing boxes");
+        //console.log(this.state.boxes.length);
+
+        const newBoxes = this.state.boxes;
+        newBoxes.push({index: newBoxes.length});
+        this.setState({boxes : newBoxes});
+
+        //console.log(this.state.boxes.length);
+
+        const splitAt = index => x => [x.slice(0, index), x.slice(index + 1)];
+
+        if (full_text.length === 0)
+            this.setState({[0]: ''});
+
+        else
+        {
+            if (full_text.length > 280)
+            {
+                let search_index = 279;
+                let text_collection = [];
+                while (full_text[search_index] != ' ')
+                    search_index--;
+                
+                let split_text = splitAt(search_index)(full_text);
+                this.setState({[0]: split_text[0]});
+
+                while(split_text[1].length > 280)
+                {
+                    search_index = 279;
+                    while (split_text[1][search_index] != ' ')
+                        search_index--;
+                    split_text = splitAt(search_index)(split_text[1]);
+                    text_collection.push(split_text[0]);
+                }
+
+                text_collection.push(split_text[1]);
+
+                for (let j = 0; j < text_collection.length; j++)
+                {
+                    this.handleaddbox();
+                    this.setState({[j+1]: text_collection[j]});
+                }
+                
+
+            }
+
+            else
+                this.setState({[0]: full_text});
+        }
+
+
+        this.setState({ showModal: false });
+        //this.setState({ re_render: true });
+
+    }
+
     handleCancel () {
         this.setState({ Bsplitting: false, splitting:"off" });   
         console.log("cancel: set splitting state " + this.state.splitting);
@@ -130,6 +210,7 @@ class Body extends React.Component {
 
     handleTweetChange(tweetId, value) {
         this.setState({[tweetId]: value});
+            
     }
 
     handleFileUpload(mediaId, value) {
@@ -143,7 +224,7 @@ class Body extends React.Component {
                 key={box.index}
                 id={box.index}
                 onChange={this.handleTweetChange}
-                value={this.state[box]}
+                value={this.state[box.index]}
                 uploadUrl={this.state.uploadUrl}
                 uploadData={this.state.uploadData}
                 onUpload={this.handleFileUpload}    
@@ -181,13 +262,29 @@ class Body extends React.Component {
                         content =  <Fail handleHome2= {this.handleHome2 }handleHelp = {this.props.handleHelp} response = {this.state.response} username = {this.props.username}/>
 
                 }
+
+                else if(this.state.showModal){
+                    content = 
+                                <div className = "main-body">
+                                <div className = "sub-body">
+        
+                                <OurModal showModal={this.state.showModal}  Bsplitting={this.state.Bsplitting}  splitting={this.state.splitting}  handleInputChange = {this.handleInputChange} handleCancel = {this.handleCancel} handleOpenModal = {this.handleOpenModal} handleSplitting = {this.handleSplitting} handleCloseModal = {this.handleCloseModal}/>
+                                
+                                {button}
+                                {sendtweet}
+        
+                                </div>
+                                </div>
+                    
+                }
+
                 else{
                         content = 
                                     <div className = "main-body">
                                     <div className = "sub-body">
 
-                                    <OurModal showModal={this.state.showModal}  Bsplitting={this.state.Bsplitting}  splitting={this.state.splitting}  handleInputChange = {this.handleInputChange} handleCancel = {this.handleCancel} handleOpenModal = {this.handleOpenModal} handleCloseModal = {this.handleCloseModal}/>
-
+                                    <OurModal showModal={this.state.showModal}  Bsplitting={this.state.Bsplitting}  splitting={this.state.splitting}  handleInputChange = {this.handleInputChange} handleCancel = {this.handleCancel} handleOpenModal = {this.handleOpenModal} handleSplitting = {this.handleSplitting} handleCloseModal = {this.handleCloseModal}/>
+                                    
                                     {Tweets}             
                                     {button}
                                     {sendtweet}

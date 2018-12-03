@@ -69,7 +69,7 @@ class OurModal extends React.Component {
             <div className="modal-footer">
             <div className="b-7" data-dismiss="modal"><button type="submit2"onClick={this.props.handleCancel}>cancel</button></div>
             <div className="b-6">
-            <button type="submit2" onClick={this.props.handleCloseModal}> submit </button>
+            <button type="submit2" onClick={this.props.handleSplitting}> submit </button>
             </div>
             </div>
             </ReactModal>
