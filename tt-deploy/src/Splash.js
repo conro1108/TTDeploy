@@ -34,7 +34,6 @@ class Splash extends Component {
             src={require('./logo2.JPG')}
             alt='logo2' />
                 <div className = "splash-5">
-            Lots and lots of other important words could go here, lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots
             </div> 
 </div>
 </div>

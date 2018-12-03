@@ -406,7 +406,7 @@ button[type=link] {
   width: 25px;
   height: 25px;
   line-height: 10px;
-  
+  padding-top: 1px;
   font-family: "Helvetica";
   margin-left: 20px;
   margin-right: 20px;
