@@ -55,7 +55,7 @@ class Tweet extends React.Component{
             response => {
                 console.log(response);
                 
-                this.props.onUpload("media"+this.props.id, postData['url']+postData['key'].slice(0,-11)+upload.name);
+                this.props.onUpload("media"+this.props.id, this.props.uploadUrl+postData['key'].slice(0,-11)+upload.name);
             }, 
             error => {
                 console.log(error);
