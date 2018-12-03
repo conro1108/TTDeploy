@@ -54,6 +54,7 @@ class Tweet extends React.Component{
         axios.post(this.props.uploadUrl, formdata).then(
             response => {
                 console.log(response);
+                console.log(formdata);
                 this.props.onUpload("media"+this.props.id, formdata['url']+formdata['key']);
             }, 
             error => {
