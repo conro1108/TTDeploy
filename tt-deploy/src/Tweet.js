@@ -33,11 +33,17 @@ class Tweet extends React.Component{
         let postData = this.props.uploadData;
         postData = Object.assign({'file': event.target.files[0]}, postData);
         console.log(postData);
+        let formdata = new FormData();
+        for(const field in postData){
+            formdata.append(field, postData[field])
+        }
         //this.props.onUpload("media"+this.props.id, upload);
-
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", this.props.uploadUrl);
+        xhr.send(formdata);
         //const header = {'Content-Type': 'multipart/form-data'};
-
-        axios.post(this.props.uploadUrl, postData).then(
+        /*
+        axios.post(this.props.uploadUrl, formdata).then(
             response => {
                 console.log(response);
                 this.props.onUpload("media"+this.props.id, response.data.location);
@@ -46,6 +52,7 @@ class Tweet extends React.Component{
                 console.log(error);
             }
         )
+        */
     }
 
     render(){
