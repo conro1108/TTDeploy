@@ -32,13 +32,12 @@ class Tweet extends React.Component{
         console.log(upload); 
         let postData = this.props.uploadData;
         postData = Object.assign({'file': event.target.files[0]}, postData);
-        postData['key'] = postData['key'].slice(0,-11) + upload.name; 
         console.log(postData);
         //this.props.onUpload("media"+this.props.id, upload);
 
-        const header = {'Content-Type': 'multipart/form-data'};
+        //const header = {'Content-Type': 'multipart/form-data'};
 
-        axios.post(this.props.uploadUrl, postData, {headers : header}).then(
+        axios.post(this.props.uploadUrl, postData).then(
             response => {
                 console.log(response);
                 this.props.onUpload("media"+this.props.id, response.data.location);
