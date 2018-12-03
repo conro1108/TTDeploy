@@ -31,12 +31,13 @@ class Tweet extends React.Component{
         const upload = event.target.files[0];
         console.log(upload); 
         let postData = this.props.uploadData;
-        postData = Object.assign({'file': event.target.files[0]}, postData);
+        //postData = Object.assign({'file': event.target.files[0]}, postData);
         console.log(postData);
         let formdata = new FormData();
         for(const field in postData){
             formdata.append(field, postData[field])
         }
+        formdata.append("file", event.target.files[0]);
         for (var pair of formdata.entries()) {
             console.log(pair[0]+ ', ' + pair[1]); 
         }
