@@ -7,7 +7,7 @@ class Splash extends Component {
     constructor(props){
     super(props);}
     render() {
-                console.log(this.props.username + ", " + this.props.resourceOwnerSecretCookie + ", " + this.props.resourceOwnerKeyCookie + ", " + this.props.loginUrl + ", " + this.props.isLoggedIn);
+                //console.log(this.props.username + ", " + this.props.resourceOwnerSecretCookie + ", " + this.props.resourceOwnerKeyCookie + ", " + this.props.loginUrl + ", " + this.props.isLoggedIn);
         return (
             <div className = "splash-footer">
                 <div className = "splash-header">

@@ -30,18 +30,18 @@ class Page extends Component {
     }
     handleHelp(){
         this.setState({help: true, contact: false});
-        console.log("help");
+        //console.log("help");
     }
     handleContact(){
         this.setState({help: false, contact: true});
-        console.log("contact us");
+        //console.log("contact us");
     }
     handleHome(){
         this.setState({help: false, contact: false});
     }
     
     logout() {
-        console.log('logging out')
+        //console.log('logging out')
         cookies.remove('access_token_key',  { path: '/', domain : '.threadedtweeter.com' });
         cookies.remove('access_token_secret',  { path: '/', domain : '.threadedtweeter.com' }); 
         window.location.reload();
@@ -67,7 +67,7 @@ class Page extends Component {
         this.checkLoginStatus().then(
             response => {
                 if (!this.state.isLoggedIn) {
-                    console.log('not logged in part 2')
+                    //console.log('not logged in part 2')
                     axios.get('https://api.threadedtweeter.com/v2/login?mode=webapp').then(
                         response => {
                             this.setState({
@@ -93,7 +93,7 @@ class Page extends Component {
     
     render() {
         
-        console.log(this.state.username + ", " + this.state.resourceOwnerSecretCookie + ", " + this.state.resourceOwnerKeyCookie + ", " + this.state.loginUrl + ", " + this.state.isLoggedIn);
+        //console.log(this.state.username + ", " + this.state.resourceOwnerSecretCookie + ", " + this.state.resourceOwnerKeyCookie + ", " + this.state.loginUrl + ", " + this.state.isLoggedIn);
         
         let content;
         

@@ -54,18 +54,14 @@ class Body extends React.Component {
             })
         }
         let thread = {"TWEETS" : tweets};
-        console.log(JSON.stringify(thread));
+        //console.log(JSON.stringify(thread));
         let xhttp = new XMLHttpRequest(); 
         xhttp.open("POST", "https://api.threadedtweeter.com/v2/post-thread", false); 
         xhttp.withCredentials=true;
         xhttp.send(JSON.stringify(thread));
         let response = xhttp.response;
-        console.log(response);
-        //console.log(response[1]);
         const parsedResponse = JSON.parse(response);
-        console.log(parsedResponse);
-        console.log(parsedResponse.errorMessage);
-        console.log(response.body);
+        //console.log(parsedResponse);
         if (!(parsedResponse.errorMessage === undefined)){
             this.setState({tweetsent: "fail", response: parsedResponse.errorMessage});
         }
@@ -89,17 +85,17 @@ class Body extends React.Component {
         newBoxes.push({index: newBoxes.length});
         this.setState({boxes : newBoxes});
         
-        console.log("handleaddbox " + this.state.boxes.length);
+        //console.log("handleaddbox " + this.state.boxes.length);
     }
     
     handleOpenModal () {
         this.setState({ showModal: true });
-        console.log("Open Modal");
+        //console.log("Open Modal");
     }
 
     handleCloseModal () {
         this.setState({ showModal: false });
-        console.log("Close Modal");
+        //console.log("Close Modal");
     }
     
     handleremovebox(){
@@ -107,11 +103,11 @@ class Body extends React.Component {
         this.setState({[this.state.boxes.length - 1] : ''});
         newBoxes.splice((newBoxes.length-1),1);
         this.setState({boxes : newBoxes});
-        console.log("handleremovebox " + this.state.boxes.length);
+        //console.log("handleremovebox " + this.state.boxes.length);
     }
     
     handleSplitting () {
-        console.log("Splitting???");
+        //console.log("Splitting");
 
         let full_text = "";
 
@@ -189,8 +185,8 @@ class Body extends React.Component {
 
     handleCancel () {
         this.setState({ Bsplitting: false, splitting:"off" });   
-        console.log("cancel: set splitting state " + this.state.splitting);
-        console.log("cancel: set Bsplitting state " + this.state.Bsplitting);
+        //console.log("cancel: set splitting state " + this.state.splitting);
+        //console.log("cancel: set Bsplitting state " + this.state.Bsplitting);
         this.setState({ showModal: false });
     }
 
@@ -205,11 +201,11 @@ class Body extends React.Component {
         
         if(this.state.Bsplitting === true){
             this.setState({splitting: "off"});
-            console.log("set splitting state off");
+            //console.log("set splitting state off");
         }
         else{
             this.setState({splitting: "on"});
-            console.log("set splitting state on");
+            //console.log("set splitting state on");
         }
     }
 
