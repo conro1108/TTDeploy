@@ -166,7 +166,7 @@ class Body extends React.Component {
                 for (let j = 0; j < text_collection.length; j++)
                 {
                     this.handleaddbox();
-                    this.setState({['tweet'+j+1]: text_collection[j]});
+                    this.setState({['tweet'+(j+1)]: text_collection[j]});
                 }
                 
 
