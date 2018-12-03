@@ -8,13 +8,13 @@ class Success extends React.Component {
    
     render() {
         const username = this.props.username;
-        const timeline =   <Timeline
+        const timeline2 =   <Timeline
             dataSource={{
               sourceType: 'profile',
-              screenName: username
+              screenName: BarackObama
             }}
             options={{
-              username: username,
+              username: BarackObama,
               height: '300',
               width: '600'
             }}
@@ -32,7 +32,7 @@ class Success extends React.Component {
             </div>
             </div>
             <div className = "after-tweet-body">
-            
+            {timeline2}
             </div>
             <div className = "after-tweet-footer">
             <button type="link" onClick = {this.props.handleHome2}> post another </button> 
