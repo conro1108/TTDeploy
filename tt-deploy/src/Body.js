@@ -114,7 +114,7 @@ class Body extends React.Component {
 
         for (let i = 0; i < this.state.boxes.length; i++)
         {
-            full_text += this.state[i] + " ";
+            full_text += this.state['tweet'+i] + " ";
         }
 
 
@@ -138,7 +138,7 @@ class Body extends React.Component {
         const splitAt = index => x => [x.slice(0, index), x.slice(index + 1)];
 
         if (full_text.length === 0)
-            this.setState({[0]: ''});
+            this.setState({['tweet0']: ''});
 
         else
         {
@@ -150,7 +150,7 @@ class Body extends React.Component {
                     search_index--;
                 
                 let split_text = splitAt(search_index)(full_text);
-                this.setState({[0]: split_text[0]});
+                this.setState({['tweet0']: split_text[0]});
 
                 while(split_text[1].length > 280)
                 {
@@ -166,14 +166,14 @@ class Body extends React.Component {
                 for (let j = 0; j < text_collection.length; j++)
                 {
                     this.handleaddbox();
-                    this.setState({[j+1]: text_collection[j]});
+                    this.setState({['tweet'+j+1]: text_collection[j]});
                 }
                 
 
             }
 
             else
-                this.setState({[0]: full_text});
+                this.setState({['tweet0']: full_text});
         }
 
 
@@ -224,7 +224,7 @@ class Body extends React.Component {
                 key={box.index}
                 id={box.index}
                 onChange={this.handleTweetChange}
-                value={this.state[box.index]}
+                value={this.state['tweet'+box.index]}
                 uploadUrl={this.state.uploadUrl}
                 uploadData={this.state.uploadData}
                 onUpload={this.handleFileUpload}    
