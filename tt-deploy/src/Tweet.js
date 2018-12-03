@@ -36,7 +36,9 @@ class Tweet extends React.Component{
         console.log(postData);
         //this.props.onUpload("media"+this.props.id, upload);
 
-        axios.post(this.props.uploadUrl, postData).then(
+        const header = {'Content-Type': 'multipart/form-data'};
+
+        axios.post(this.props.uploadUrl, postData, {headers : header}).then(
             response => {
                 console.log(response);
                 this.props.onUpload("media"+this.props.id, response.data.location);
