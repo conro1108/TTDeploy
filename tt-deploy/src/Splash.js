@@ -33,7 +33,8 @@ class Splash extends Component {
             <img width = "100px"
             src={require('./logo2.JPG')}
             alt='logo2' />
-                <div className = "splash-5">
+             <div className = "splash-5">
+                 By logging in you consent to our use of cookies. 
             </div> 
 </div>
 </div>
