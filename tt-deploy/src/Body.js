@@ -51,7 +51,7 @@ class Body extends React.Component {
         for(let i = 0; i < numTweets; i++) {
             tweets.push({
                 "STATUS": ("tweet"+i in this.state) ? this.state["tweet"+i] : "",
-                "MEDIA": ("media"+i in this.state) ? [this.state["media"+i]] : []
+                "MEDIA": ("media"+i in this.state && this.state["media"+i] != '') ? [this.state["media"+i]] : []
             })
         }
         let thread = {"TWEETS" : tweets};
