@@ -29,10 +29,10 @@ class Tweet extends React.Component{
     fileHandler(event)  {
         this.setState({file: event.target.files[0]});
         const upload = event.target.files[0];
-        console.log(upload); 
+        //console.log(upload); 
         let postData = this.props.uploadData;
         //postData = Object.assign({'file': event.target.files[0]}, postData);
-        console.log(postData);
+        //console.log(postData);
         let formdata = new FormData();
         for(const field in postData){
             formdata.append(field, postData[field])
@@ -53,7 +53,7 @@ class Tweet extends React.Component{
         
         axios.post(this.props.uploadUrl, formdata).then(
             response => {
-                console.log(response);
+                //console.log(response);
                 
                 this.props.onUpload("media"+this.props.id, this.props.uploadUrl+postData['key'].slice(0,-11)+upload.name);
             }, 

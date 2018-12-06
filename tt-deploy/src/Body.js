@@ -221,7 +221,7 @@ class Body extends React.Component {
     }
 
     render() {
-        console.log(this.state.tweetsent);
+        //console.log(this.state.tweetsent);
         const Tweets = this.state.boxes.map(box => (
             <Tweet 
                 key={box.index}
