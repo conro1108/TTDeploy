@@ -7,7 +7,7 @@ class Splash extends Component {
     constructor(props){
     super(props);}
     render() {
-                console.log(this.props.username + ", " + this.props.resourceOwnerSecretCookie + ", " + this.props.resourceOwnerKeyCookie + ", " + this.props.loginUrl + ", " + this.props.isLoggedIn);
+                //console.log(this.props.username + ", " + this.props.resourceOwnerSecretCookie + ", " + this.props.resourceOwnerKeyCookie + ", " + this.props.loginUrl + ", " + this.props.isLoggedIn);
         return (
             <div className = "splash-footer">
                 <div className = "splash-header">
@@ -33,8 +33,8 @@ class Splash extends Component {
             <img width = "100px"
             src={require('./logo2.JPG')}
             alt='logo2' />
-                <div className = "splash-5">
-            Lots and lots of other important words could go here, lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots and lots
+             <div className = "splash-5">
+                 By logging in you consent to our use of cookies. 
             </div> 
 </div>
 </div>

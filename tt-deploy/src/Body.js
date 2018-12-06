@@ -15,6 +15,7 @@ class Body extends React.Component {
         this.handleTweetChange = this.handleTweetChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleHome2 = this.handleHome2.bind(this);
+        this.handleHome3 = this.handleHome3.bind(this);
         this.handleCancel =       this.handleCancel.bind(this);
         this.handleSplitting =       this.handleSplitting.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -50,22 +51,18 @@ class Body extends React.Component {
         for(let i = 0; i < numTweets; i++) {
             tweets.push({
                 "STATUS": ("tweet"+i in this.state) ? this.state["tweet"+i] : "",
-                "MEDIA": ("media"+i in this.state) ? [this.state["media"+i]] : []
+                "MEDIA": ("media"+i in this.state && this.state["media"+i] != '') ? [this.state["media"+i]] : []
             })
         }
         let thread = {"TWEETS" : tweets};
-        console.log(JSON.stringify(thread));
+        //console.log(JSON.stringify(thread));
         let xhttp = new XMLHttpRequest(); 
         xhttp.open("POST", "https://api.threadedtweeter.com/v2/post-thread", false); 
         xhttp.withCredentials=true;
         xhttp.send(JSON.stringify(thread));
         let response = xhttp.response;
-        console.log(response);
-        //console.log(response[1]);
         const parsedResponse = JSON.parse(response);
-        console.log(parsedResponse);
-        console.log(parsedResponse.errorMessage);
-        console.log(response.body);
+        //console.log(parsedResponse);
         if (!(parsedResponse.errorMessage === undefined)){
             this.setState({tweetsent: "fail", response: parsedResponse.errorMessage});
         }
@@ -78,35 +75,41 @@ class Body extends React.Component {
         this.setState({tweetsent: "no", response: ""});
         //TODO reinitalize boxes to whatever one blank box is
     }
+    
+    handleHome3(){
+        this.setState({tweetsent: "no", response: ""});
+        //DO NOT reinitalize boxes
+    }
 
     handleaddbox(){
         const newBoxes = this.state.boxes;
         newBoxes.push({index: newBoxes.length});
         this.setState({boxes : newBoxes});
         
-        console.log("handleaddbox " + this.state.boxes.length);
+        //console.log("handleaddbox " + this.state.boxes.length);
     }
     
     handleOpenModal () {
         this.setState({ showModal: true });
-        console.log("Open Modal");
+        //console.log("Open Modal");
     }
 
     handleCloseModal () {
         this.setState({ showModal: false });
-        console.log("Close Modal");
+        //console.log("Close Modal");
     }
     
     handleremovebox(){
         const newBoxes = this.state.boxes;
-        this.setState({['tweet'+(this.state.boxes.length - 1)] : ''});
+        this.setState({['tweet'+(this.state.boxes.length - 1)] : '',
+                        ['media'+(this.state.boxes.length - 1)] : ''});
         newBoxes.splice((newBoxes.length-1),1);
         this.setState({boxes : newBoxes});
-        console.log("handleremovebox " + this.state.boxes.length);
+        //console.log("handleremovebox " + this.state.boxes.length);
     }
     
     handleSplitting () {
-        console.log("Splitting???");
+        //console.log("Splitting");
 
         let full_text = "";
 
@@ -184,8 +187,8 @@ class Body extends React.Component {
 
     handleCancel () {
         this.setState({ Bsplitting: false, splitting:"off" });   
-        console.log("cancel: set splitting state " + this.state.splitting);
-        console.log("cancel: set Bsplitting state " + this.state.Bsplitting);
+        //console.log("cancel: set splitting state " + this.state.splitting);
+        //console.log("cancel: set Bsplitting state " + this.state.Bsplitting);
         this.setState({ showModal: false });
     }
 
@@ -200,11 +203,11 @@ class Body extends React.Component {
         
         if(this.state.Bsplitting === true){
             this.setState({splitting: "off"});
-            console.log("set splitting state off");
+            //console.log("set splitting state off");
         }
         else{
             this.setState({splitting: "on"});
-            console.log("set splitting state on");
+            //console.log("set splitting state on");
         }
     }
 
@@ -218,7 +221,7 @@ class Body extends React.Component {
     }
 
     render() {
-        console.log(this.state.tweetsent);
+        //console.log(this.state.tweetsent);
         const Tweets = this.state.boxes.map(box => (
             <Tweet 
                 key={box.index}
@@ -259,13 +262,12 @@ class Body extends React.Component {
                         content = <Success handleHome2= {this.handleHome2} response = {this.state.response} username = {this.props.username}/>
                 }
                 else if(this.state.tweetsent === "fail"){
-                        content =  <Fail handleHome2= {this.handleHome2} handleHelp = {this.props.handleHelp} response = {this.state.response} username = {this.props.username}/>
+                        content =  <Fail handleHome3= {this.handleHome3} handleHelp = {this.props.handleHelp} response = {this.state.response} username = {this.props.username}/>
 
                 }
 
                 else if(this.state.showModal){
                     content = 
-                                <div className = "main-body">
                                 <div className = "sub-body">
         
                                 <OurModal showModal={this.state.showModal}  Bsplitting={this.state.Bsplitting}  splitting={this.state.splitting}  handleInputChange = {this.handleInputChange} handleCancel = {this.handleCancel} handleOpenModal = {this.handleOpenModal} handleSplitting = {this.handleSplitting} handleCloseModal = {this.handleCloseModal}/>
@@ -274,13 +276,11 @@ class Body extends React.Component {
                                 {sendtweet}
         
                                 </div>
-                                </div>
                     
                 }
 
                 else{
                         content = 
-                                    <div className = "main-body">
                                     <div className = "sub-body">
 
                                     <OurModal showModal={this.state.showModal}  Bsplitting={this.state.Bsplitting}  splitting={this.state.splitting}  handleInputChange = {this.handleInputChange} handleCancel = {this.handleCancel} handleOpenModal = {this.handleOpenModal} handleSplitting = {this.handleSplitting} handleCloseModal = {this.handleCloseModal}/>
@@ -290,12 +290,11 @@ class Body extends React.Component {
                                     {sendtweet}
 
                                     </div>
-                                    </div>
                 }
         
         
         return (
-                <div>
+                <div className = "main-body">
                 {content}
                 </div>
         );

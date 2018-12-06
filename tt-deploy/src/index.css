@@ -100,7 +100,7 @@
   background-color: var(--subcolor);
   min-height: 100vh;
   margin: 0;
-  font-family: "Segoe UI";
+  font-family: "Helvetica";
   color: white;
 }
 
@@ -130,7 +130,7 @@
   min-height: 100vh;
   flex-direction: column;
   margin: 0;
-  font-family: "Segoe UI";
+  font-family: "Helvetica";
   color: white;
 }
 
@@ -232,7 +232,8 @@
   display: flex;
   flex-direction:row;
   justify-content: space-between; 
-  margin-bottom: 2px;
+  margin-bottom: 5px;
+  margin-top: -1px;
 }
 
 .h-1 {
@@ -242,8 +243,16 @@
   padding-left: 10px
 }
 
+.h-1:hover{
+    cursor: pointer;
+}
+
 .h-2 {
   width:70px;
+}
+
+.h-2:hover{
+    cursor: pointer;
 }
 
 .h-3 {
@@ -251,6 +260,7 @@
   font-size: 38px;
   line-height: 1.1;
 }
+
 .h-3:hover{
     cursor: pointer;
 }
@@ -345,7 +355,7 @@ textarea[type=text2], select {
   height: 150px;
   font-size:10pt;
   width: 100%;
- font-family: "Segoe UI";
+ font-family: "Helvetica";
 }
 
 input[type=submit] {
@@ -396,8 +406,8 @@ button[type=link] {
   width: 25px;
   height: 25px;
   line-height: 10px;
-  padding-bottom: 5px;
-  font-family: "Segoe UI";
+  padding-top: 1px;
+  font-family: "Helvetica";
   margin-left: 20px;
   margin-right: 20px;
 }
