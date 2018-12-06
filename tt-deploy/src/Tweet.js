@@ -66,7 +66,7 @@ class Tweet extends React.Component{
 
     render(){
         let charlimit;
-        console.log(this.state.value)
+        //console.log(this.state.value)
         if(this.state.value.length <= 280){
             charlimit = <div className="b-5">
                         {this.state.value.length}/280 
