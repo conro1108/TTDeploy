@@ -78,6 +78,8 @@ class Body extends React.Component {
             this.handleremovebox();
         }
         
+        console.log("handle home please??");
+
         const newBoxes = this.state.boxes;
         newBoxes.push({index: newBoxes.length});
         this.setState({boxes : newBoxes});    
