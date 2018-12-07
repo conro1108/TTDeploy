@@ -148,6 +148,7 @@ class Body extends React.Component {
         //console.log(this.state.boxes.length);
 
         const splitAt = index => x => [x.slice(0, index), x.slice(index + 1)];
+        const splitAtKeepDelim = index => x => [x.slice(0, index), x.slice(index)];
 
         if (full_text.length === 0)
             this.setState({['tweet0']: ''});
@@ -158,18 +159,34 @@ class Body extends React.Component {
             {
                 let search_index = 279;
                 let text_collection = [];
-                while (full_text[search_index] != ' ')
+                let split_text;
+                while (full_text[search_index] != ' ' && search_index >= 0)
                     search_index--;
-                
-                let split_text = splitAt(search_index)(full_text);
+
+                if (search_index < 0)
+                {
+                    search_index = 279;
+                    split_text = splitAtKeepDelim(search_index)(full_text);
+                }
+
+                else    
+                    split_text = splitAt(search_index)(full_text);
                 this.setState({['tweet0']: split_text[0]});
 
                 while(split_text[1].length > 280)
                 {
                     search_index = 279;
-                    while (split_text[1][search_index] != ' ')
+                    while (split_text[1][search_index] != ' ' && search_index >= 0)
                         search_index--;
-                    split_text = splitAt(search_index)(split_text[1]);
+
+                    if (search_index < 0)
+                    {
+                        search_index = 279;
+                        split_text = splitAtKeepDelim(search_index)(split_text[1]);
+                    }
+                    else
+                        split_text = splitAt(search_index)(split_text[1]);
+
                     text_collection.push(split_text[0]);
                 }
 
