@@ -74,6 +74,13 @@ class Body extends React.Component {
     handleHome2(){
         this.setState({tweetsent: "no", response: ""});
         //TODO reinitalize boxes to whatever one blank box is
+        while(this.state.boxes.length > 0){
+            this.handleremovebox();
+        }
+        
+        const newBoxes = this.state.boxes;
+        newBoxes.push({index: newBoxes.length});
+        this.setState({boxes : newBoxes});    
     }
     
     handleHome3(){
