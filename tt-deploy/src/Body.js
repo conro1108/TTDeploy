@@ -120,92 +120,94 @@ class Body extends React.Component {
     handleSplitting () {
         //console.log("Splitting");
 
-        let full_text = "";
-
-        //console.log("enter loop");
-
-        for (let i = 0; i < this.state.boxes.length; i++)
+        if (this.state.Bsplitting)
         {
-            full_text += this.state['tweet'+i] + " ";
-        }
+            let full_text = "";
 
+            //console.log("enter loop");
 
-        while(this.state.boxes.length > 0)
-        {
-            //console.log("adding text");
-            
-
-            this.handleremovebox();
-        }
-
-        //console.log("done removing boxes");
-        //console.log(this.state.boxes.length);
-
-        const newBoxes = this.state.boxes;
-        newBoxes.push({index: newBoxes.length});
-        this.setState({boxes : newBoxes});
-
-        //console.log(this.state.boxes.length);
-
-        const splitAt = index => x => [x.slice(0, index), x.slice(index + 1)];
-        const splitAtKeepDelim = index => x => [x.slice(0, index), x.slice(index)];
-
-        if (full_text.length === 0)
-            this.setState({['tweet0']: ''});
-
-        else
-        {
-            if (full_text.length > 280)
+            for (let i = 0; i < this.state.boxes.length; i++)
             {
-                let search_index = 279;
-                let text_collection = [];
-                let split_text;
-                while (full_text[search_index] != ' ' && search_index >= 0)
-                    search_index--;
+                full_text += this.state['tweet'+i] + " ";
+            }
 
-                if (search_index < 0)
+
+            while(this.state.boxes.length > 0)
+            {
+                //console.log("adding text");
+                
+
+                this.handleremovebox();
+            }
+
+            //console.log("done removing boxes");
+            //console.log(this.state.boxes.length);
+
+            const newBoxes = this.state.boxes;
+            newBoxes.push({index: newBoxes.length});
+            this.setState({boxes : newBoxes});
+
+            //console.log(this.state.boxes.length);
+
+            const splitAt = index => x => [x.slice(0, index), x.slice(index + 1)];
+            const splitAtKeepDelim = index => x => [x.slice(0, index), x.slice(index)];
+
+            if (full_text.length === 0)
+                this.setState({['tweet0']: ''});
+
+            else
+            {
+                if (full_text.length > 280)
                 {
-                    search_index = 279;
-                    split_text = splitAtKeepDelim(search_index)(full_text);
-                }
-
-                else    
-                    split_text = splitAt(search_index)(full_text);
-                this.setState({['tweet0']: split_text[0]});
-
-                while(split_text[1].length > 280)
-                {
-                    search_index = 279;
-                    while (split_text[1][search_index] != ' ' && search_index >= 0)
+                    let search_index = 279;
+                    let text_collection = [];
+                    let split_text;
+                    while (full_text[search_index] != ' ' && search_index >= 0)
                         search_index--;
 
                     if (search_index < 0)
                     {
                         search_index = 279;
-                        split_text = splitAtKeepDelim(search_index)(split_text[1]);
+                        split_text = splitAtKeepDelim(search_index)(full_text);
                     }
-                    else
-                        split_text = splitAt(search_index)(split_text[1]);
 
-                    text_collection.push(split_text[0]);
+                    else    
+                        split_text = splitAt(search_index)(full_text);
+                    this.setState({['tweet0']: split_text[0]});
+
+                    while(split_text[1].length > 280)
+                    {
+                        search_index = 279;
+                        while (split_text[1][search_index] != ' ' && search_index >= 0)
+                            search_index--;
+
+                        if (search_index < 0)
+                        {
+                            search_index = 279;
+                            split_text = splitAtKeepDelim(search_index)(split_text[1]);
+                        }
+                        else
+                            split_text = splitAt(search_index)(split_text[1]);
+
+                        text_collection.push(split_text[0]);
+                    }
+
+                    text_collection.push(split_text[1]);
+
+                    for (let j = 0; j < text_collection.length; j++)
+                    {
+                        this.handleaddbox();
+                        this.setState({['tweet'+(j+1)]: text_collection[j]});
+                    }
+                    
+
                 }
 
-                text_collection.push(split_text[1]);
-
-                for (let j = 0; j < text_collection.length; j++)
-                {
-                    this.handleaddbox();
-                    this.setState({['tweet'+(j+1)]: text_collection[j]});
-                }
-                
-
+                else
+                    this.setState({['tweet0']: full_text});
             }
 
-            else
-                this.setState({['tweet0']: full_text});
         }
-
-
         this.setState({ showModal: false });
         //this.setState({ re_render: true });
 
