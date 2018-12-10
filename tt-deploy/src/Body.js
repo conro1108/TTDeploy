@@ -88,6 +88,12 @@ class Body extends React.Component {
     handleHome3(){
         this.setState({tweetsent: "no", response: ""});
         //DO NOT reinitalize boxes
+
+        let numTweets = this.state.boxes.length;
+        for(let i = 0; i < numTweets; i++) {
+            this.setState({['media'+(i)] : ''});
+        }
+
     }
 
     handleaddbox(){
